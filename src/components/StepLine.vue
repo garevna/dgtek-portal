@@ -1,5 +1,5 @@
 <template>
-    <v-stepper  flat alt-labels>
+    <v-stepper flat alt-labels>
         <v-stepper-header flat>
            <v-stepper-step  step="" :complete="1 <= currentStep">
             Step 1
@@ -16,14 +16,12 @@
       </v-stepper>
 </template>
 
-<script>
-export default {
-  props:['steps','currentStep']
-}
-</script>
-
 <style lang="scss">
 @import '../sass/_variables.scss'; 
+
+.v-stepper__header{
+  background-color: #F3F3F3;
+}
 
 .theme--light.v-stepper .v-stepper__step:not(.v-stepper__step--active):not(.v-stepper__step--complete):not(.v-stepper__step--error) .v-stepper__step__step {
     background: unset !important;
@@ -39,3 +37,9 @@ export default {
   box-shadow: unset !important;
 }
 </style>
+
+<script>
+export default {
+  props:['steps','currentStep']
+}
+</script>

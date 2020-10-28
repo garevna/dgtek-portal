@@ -19,6 +19,12 @@
   </div>
 </template>
 
+<style lang="scss">
+.v-slide-group__content {
+  padding-left: 50px;
+}
+</style>
+
 <script>
 import SendMsa from './SendMsa';
 import CreateNewService from './CreateNewService';

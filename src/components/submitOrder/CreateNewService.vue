@@ -1,15 +1,33 @@
 <template>
-  <div class="pb-16">
+  <div class="pr-16 pl-16 pb-16 wrap">
     <StepLine :currentStep="currentStep" :steps="steps" />
     <Step1 v-if="currentStep === 1" :loadData.sync="step1" :saveData="saveDataStep1" />
     <Step2 v-if="currentStep === 2" :loadData.sync="step2" :saveData="saveDataStep2" />
     <Step3 v-if="currentStep === 3" />
     <div class="btn-container mt-4">
       <v-btn v-if="currentStep > 1" class="btn-back" @click="back">BACK</v-btn>
-      <v-btn @click="forward" class="btn-next">SAVE & CONTINUE</v-btn>
+      <v-btn color="primary" @click="forward" class="btn-next">SAVE & CONTINUE</v-btn>
     </div>
   </div>
 </template>
+
+<style scoped>
+.wrap{
+  background-color: #F3F3F3;
+}
+.btn-container {
+  position: relative;
+}
+.btn-back{
+  position: absolute;
+  left: 0;
+  top:0;
+}
+.btn-next{
+  position: absolute;
+  right: 0;
+}
+</style>
 
 <script>
 import Step1 from '../submitOrder/Step1';
@@ -101,18 +119,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.btn-container {
-  position: relative;
-}
-.btn-back{
-  position: absolute;
-  left: 0;
-  top:0;
-}
-.btn-next{
-  position: absolute;
-  right: 0;
-}
-</style>
