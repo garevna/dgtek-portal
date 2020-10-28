@@ -1,5 +1,6 @@
 <template>
   <div>
+    <StepLine :currentStep="currentStep" :steps="steps"/>
     <Step1/>
     <Step2/>
     <div class="d-flex justify-space-between">
@@ -12,15 +13,18 @@
 <script>
 import Step1 from '../submitOrder/Step1'
 import Step2 from '../submitOrder/Step2'
+import StepLine from '../StepLine'
 export default {
   name: 'CreateNewService',
   // props: ['', ''],
   components: {
     Step1,
-    Step2
+    Step2,
+    StepLine
   },
   data: () => ({
-    currentStep: 1,
+    currentStep:2,
+    steps: 3,
     step1: {
       product: '',
       abn: '',
