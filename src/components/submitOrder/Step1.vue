@@ -68,7 +68,7 @@
 export default {
   name: 'Step1',
 
-  // props: ['', ''],
+  props: ['loadData', 'saveData'],
 
   data: () => ({
     product: '',
@@ -86,6 +86,46 @@ export default {
   computed: {
     //
   },
+  methods: {
+    loadFields () {
+      if (!this.loadData) return
+      this.product = this.loadData.product
+      this.abn = this.loadData.abn
+      this.contactPersonDetails = this.loadData.contactPersonDetails
+      this.companyName = this.loadData.companyName
+      this.companyAddress = this.loadData.companyAddress
+      this.phone = this.loadData.phone
+      this.email = this.loadData.email
+      this.deposit = this.loadData.deposit
+      this.bankGuarantee = this.loadData.bankGuarantee
+      this.generalSequrityAgreement = this.loadData.generalSequrityAgreement
+      this.noneRequired = this.loadData.noneRequired
+    },
+    saveFields () {
+      const data = {
+        product: this.product,
+        abn: this.abn,
+        contactPersonDetails: this.contactPersonDetails,
+        companyName: this.companyName,
+        companyAddress: this.companyAddress,
+        phone: this.phone,
+        email: this.email,
+        deposit: this.deposit,
+        bankGuarantee: this.bankGuarantee,
+        generalSequrityAgreement: this.generalSequrityAgreement,
+        noneRequired: this.noneRequired,
+      }
+      this.saveData(data)
+    }
+  },
+  beforeMount () {
+    console.log('beforeMount Step1')
+    this.loadFields()
+  },
+  beforeDestroy () {
+    console.log('beforeDestroy Step1')
+    this.saveFields()
+  }
 };
 </script>
 
