@@ -1,6 +1,9 @@
 <template>
   <div>
-    <Step1/>
+    <Step1
+    :loadData="step1"
+    :saveData="saveDataStep1"
+    />
     <Step2/>
   </div>
 </template>
@@ -55,6 +58,27 @@ export default {
   computed: {
     //
   },
+  methods: {
+    saveDataStep1 (data) {
+      this.step1 = data
+    },
+    saveFields () {
+      const data = {
+        product: this.product,
+        abn: this.abn,
+        contactPersonDetails: this.contactPersonDetails,
+        companyName: this.companyName,
+        companyAddress: this.companyAddress,
+        phone: this.phone,
+        email: this.email,
+        deposit: this.deposit,
+        bankGuarantee: this.bankGuarantee,
+        generalSequrityAgreement: this.generalSequrityAgreement,
+        noneRequired: this.noneRequired,
+      }
+      this.saveData(data)
+    }
+  }
 }
 </script>
 

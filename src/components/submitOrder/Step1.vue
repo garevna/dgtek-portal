@@ -68,16 +68,16 @@
 export default {
   name: 'Step1',
 
-  // props: ['', ''],
+  props: ['loadData', 'saveData'],
 
   data: () => ({
     product: '',
     abn: '',
     contactPersonDetails: '',
-    companyName: 'DGTek',
+    companyName: '',
     companyAddress: '',
-    phone: '1800359602',
-    email: 'info@dgtek.net',
+    phone: '',
+    email: '',
     deposit: false,
     bankGuarantee: false,
     generalSequrityAgreement: false,
@@ -86,6 +86,45 @@ export default {
   computed: {
     //
   },
+  methods: {
+    loadFields () {
+      this.product = this.saveData.product
+      this.abn = this.saveData.abn
+      this.contactPersonDetails = this.saveData.contactPersonDetails
+      this.companyName = this.saveData.companyName
+      this.companyAddress = this.saveData.companyAddress
+      this.phone = this.saveData.phone
+      this.email = this.saveData.email
+      this.deposit = this.saveData.deposit
+      this.bankGuarantee = this.saveData.bankGuarantee
+      this.generalSequrityAgreement = this.saveData.generalSequrityAgreement
+      this.noneRequired = this.saveData.noneRequired
+    },
+    saveFields () {
+      const data = {
+        product: this.product,
+        abn: this.abn,
+        contactPersonDetails: this.contactPersonDetails,
+        companyName: this.companyName,
+        companyAddress: this.companyAddress,
+        phone: this.phone,
+        email: this.email,
+        deposit: this.deposit,
+        bankGuarantee: this.bankGuarantee,
+        generalSequrityAgreement: this.generalSequrityAgreement,
+        noneRequired: this.noneRequired,
+      }
+      this.saveData(data)
+    }
+  },
+  beforeMount () {
+    console.log('beforeMount')
+    this.loadFields()
+  },
+  beforeDestroy () {
+    console.log('beforeDestroy')
+    this.saveFields()
+  }
 };
 </script>
 
