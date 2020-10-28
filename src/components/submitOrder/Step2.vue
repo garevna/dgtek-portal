@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form ref="form">
     <v-row no-gutters justify="center">
       <v-col cols="8">
         <v-container fluid>
@@ -8,27 +8,34 @@
             <v-row no-gutters justify="space-between">
               <v-col cols="5" align="center">
                 <v-text-field
-                  label= "Full Site Address"
+                  v-model="fullSiteAddress"
+                  label="Full Site Address"
                 />
                 <v-text-field
-                  label= "Service Description (from MSA)"
+                  v-model="serviceDescription"
+                  label="Service Description (from MSA)"
                 />
                 <v-text-field
-                  label= "VLAN"
+                  v-model="vlan"
+                  label="VLAN"
                 />
                 <v-text-field
-                  label= "A End:"
+                  v-model="aEnd"
+                  label="A End:"
                 />
               </v-col>
               <v-col cols="5" align="center">
                 <v-text-field
-                  label= "Custumer Name"
+                  v-model="customerName"
+                  label="Custumer Name"
                 />
                 <v-text-field
-                  label= "Term:"
+                  v-model="term"
+                  label="Term:"
                 />
                 <v-text-field
-                  label= "Z End:"
+                  v-model="zEnd"
+                  label="Z End:"
                 />
               </v-col>
             </v-row>
@@ -38,21 +45,26 @@
             <v-row no-gutters justify="space-between">
               <v-col cols="5" align="center">
                 <v-text-field
-                  label= "Name"
+                  v-model="name"
+                  label="Name"
                 />
                 <v-text-field
-                  label= "Company"
+                  v-model="company"
+                  label="Company"
                 />
                 <v-text-field
-                  label= "Email Address"
+                  v-model="emailAdress"
+                  label="Email Address"
                 />
               </v-col>
               <v-col cols="5" align="center">
                 <v-text-field
-                  label= "Position"
+                  v-model="position"
+                  label="Position"
                 />
                 <v-text-field
-                  label= "Contact Number"
+                  v-model="contactNumber"
+                  label="Contact Number"
                 />
               </v-col>
             </v-row>
@@ -62,21 +74,26 @@
             <v-row no-gutters justify="space-between">
               <v-col cols="5" align="center">
                 <v-text-field
-                  label= "Company Name"
+                  v-model="companyName"
+                  label="Company Name"
                 />
                 <v-text-field
-                  label= "Position"
+                  v-model="position2"
+                  label="Position"
                 />
                 <v-text-field
-                  label= "Email Address"
+                  v-model="emailAdress2"
+                  label="Email Address"
                 />
               </v-col>
               <v-col cols="5" align="center">
                 <v-text-field
-                  label= "Site Contact Name"
+                  v-model="siteContactName"
+                  label="Site Contact Name"
                 />
                 <v-text-field
-                  label= "Contact Number"
+                  v-model="contactNumber2"
+                  label="Contact Number"
                 />
               </v-col>
             </v-row>
@@ -96,3 +113,42 @@ export default {
   
 }
 </script>
+
+<script>
+export default {
+  name: 'Step1',
+
+  props: ['', ''],
+
+  data: () => ({
+    // Technical details
+    fullSiteAddress: '',
+    serviceDescription: '',
+    vlan: '',
+    aEnd: '',
+    customerName: '',
+    term: '',
+    zEnd: '',
+    // buildings
+    name: '',
+    company: '',
+    emailAdress: '',
+    position: '',
+    contactNumber: '',
+    //  End customers
+    companyName: '',
+    position2: '',
+    emailAdress2: '',
+    siteContactName: '',
+    contactNumber2: '',
+  }),
+  computed: {
+    //
+  },
+
+}
+</script>
+
+<style>
+
+</style>
