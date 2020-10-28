@@ -5,10 +5,16 @@
 
 <script>
 import MainMenu from '@/components/MainMenu.vue'
+import SubmitOrder from '@/components/submitOrder/SubmitOrder'
+import ServiceQualification from '@/components/serviceQualification/ServiceQualification'
+import Documents from '@/components/documents/Documents'
 export default {
   name: 'Home',
   components: {
-    MainMenu
+    MainMenu,
+    SubmitOrder,
+    ServiceQualification,
+    Documents
   },
   data: () => ({})
 }
