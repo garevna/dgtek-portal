@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: 'Step1',
+  name: 'Step2',
 
   props: ['', ''],
 

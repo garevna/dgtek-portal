@@ -1,7 +1,7 @@
 <template>
   <div>
     <Step1
-    :loadData="step1"
+    :loadData.sync="step1"
     :saveData="saveDataStep1"
     />
     <Step2/>
@@ -60,24 +60,34 @@ export default {
   },
   methods: {
     saveDataStep1 (data) {
-      this.step1 = data
-    },
-    saveFields () {
-      const data = {
-        product: this.product,
-        abn: this.abn,
-        contactPersonDetails: this.contactPersonDetails,
-        companyName: this.companyName,
-        companyAddress: this.companyAddress,
-        phone: this.phone,
-        email: this.email,
-        deposit: this.deposit,
-        bankGuarantee: this.bankGuarantee,
-        generalSequrityAgreement: this.generalSequrityAgreement,
-        noneRequired: this.noneRequired,
-      }
-      this.saveData(data)
+      this.step1.product = data.product
+      this.step1.abn = data.abn
+      this.step1.contactPersonDetails = data.contactPersonDetails
+      this.step1.companyName = data.companyName
+      this.step1.companyAddress = data.companyAddress
+      this.step1.phone = data.phone
+      this.step1.email = data.email
+      this.step1.deposit = data.deposit
+      this.step1.bankGuarantee = data.bankGuarantee
+      this.step1.generalSequrityAgreement = data.generalSequrityAgreement
+      this.step1.noneRequired = data.noneRequired
     }
+    // saveFields () {
+    //   const data = {
+    //     product: this.product,
+    //     abn: this.abn,
+    //     contactPersonDetails: this.contactPersonDetails,
+    //     companyName: this.companyName,
+    //     companyAddress: this.companyAddress,
+    //     phone: this.phone,
+    //     email: this.email,
+    //     deposit: this.deposit,
+    //     bankGuarantee: this.bankGuarantee,
+    //     generalSequrityAgreement: this.generalSequrityAgreement,
+    //     noneRequired: this.noneRequired,
+    //   }
+    //   this.saveData(data)
+    // }
   }
 }
 </script>

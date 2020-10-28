@@ -88,17 +88,17 @@ export default {
   },
   methods: {
     loadFields () {
-      this.product = this.saveData.product
-      this.abn = this.saveData.abn
-      this.contactPersonDetails = this.saveData.contactPersonDetails
-      this.companyName = this.saveData.companyName
-      this.companyAddress = this.saveData.companyAddress
-      this.phone = this.saveData.phone
-      this.email = this.saveData.email
-      this.deposit = this.saveData.deposit
-      this.bankGuarantee = this.saveData.bankGuarantee
-      this.generalSequrityAgreement = this.saveData.generalSequrityAgreement
-      this.noneRequired = this.saveData.noneRequired
+      this.product = this.loadData.product
+      this.abn = this.loadData.abn
+      this.contactPersonDetails = this.loadData.contactPersonDetails
+      this.companyName = this.loadData.companyName
+      this.companyAddress = this.loadData.companyAddress
+      this.phone = this.loadData.phone
+      this.email = this.loadData.email
+      this.deposit = this.loadData.deposit
+      this.bankGuarantee = this.loadData.bankGuarantee
+      this.generalSequrityAgreement = this.loadData.generalSequrityAgreement
+      this.noneRequired = this.loadData.noneRequired
     },
     saveFields () {
       const data = {
@@ -120,6 +120,10 @@ export default {
   beforeMount () {
     console.log('beforeMount')
     this.loadFields()
+  },
+  beforeUpdate () {
+    console.log('beforeUpdate')
+    this.saveFields()
   },
   beforeDestroy () {
     console.log('beforeDestroy')
