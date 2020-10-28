@@ -1,0 +1,64 @@
+@import 'variables';
+html, body {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container.fill-height>.row {
+  max-width: 100%!important;
+}
+
+.container,
+.container--fluid,
+.container.fill-height {
+  padding: 0!important;
+}
+
+.v-main {
+  padding-top: 50px !important;
+}
+
+.green--text {
+  color: #363636;
+}
+
+h1, h2, h3, h4, h5, p {
+  font-style: normal;
+  line-height: 150%;
+  letter-spacing: 0.02em;
+}
+h1 {
+  font-size: 46px;
+  font-weight: 900;
+}
+h2 {
+  font-size: 32px;
+  font-weight: 900;
+  text-align: center;
+  color: #363636;
+  width: 100%;
+}
+h3 {
+  font-size: 28px;
+}
+h4 {
+  font-size: 24px;
+  color: #6D6D6D;
+  font-weight: normal;
+}
+
+p {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.row {
+  margin-left: 0!important;
+  margin-right: 0!important;
+}
+
+.v-btn {
+  border-radius: 0!important;
+  font-family: 'Bebas Neue';
+  font-weight: 200!important;
+}
