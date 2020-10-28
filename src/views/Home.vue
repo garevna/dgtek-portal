@@ -1,5 +1,5 @@
 <template>
-<div class="d-flex justify-center">
+<div class="d-flex justify-space-between">
   <MainMenu />
   <SubmitOrder />
   <!-- <ServiceQualification />

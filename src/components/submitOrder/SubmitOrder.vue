@@ -5,13 +5,14 @@
       <v-tab>Create new service order form</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
-      <v-tab-item  transition="false">
+      <v-tab-item  transition="false" reverse-transition="false">
         <SendMsa />
       </v-tab-item>
-      <v-tab-item>
+      <v-tab-item transition="false" reverse-transition="false">
         <CreateNewService />
       </v-tab-item>
     </v-tabs-items>
+
   </div>
 </template>
 
@@ -27,7 +28,7 @@ export default {
   },
   data () {
     return {
-       tab: null,
+       tab: 1,
     }
   }
 };
