@@ -30,11 +30,6 @@ export default {
     emailAdress2: '',
     siteContactName: '',
     contactNumber2: '',
-
-    deposit: false,
-    bankGuarantee: false,
-    generalSequrityAgreement: false,
-    noneRequired: false,
   }),
   computed: {
     //
