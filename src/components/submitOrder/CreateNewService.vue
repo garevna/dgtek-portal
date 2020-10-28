@@ -2,6 +2,10 @@
   <div>
     <Step1/>
     <Step2/>
+    <div class="d-flex justify-space-between">
+      <v-btn v-if="currentStep !== 0">BACK</v-btn>
+      <v-btn>SAVE & CONTINUE</v-btn>
+    </div>
   </div>
 </template>
 

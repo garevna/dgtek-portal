@@ -12,7 +12,6 @@
         <CreateNewService v-if="tab === 1"/>
       </v-tab-item>
     </v-tabs-items>
-
   </div>
 </template>
 
