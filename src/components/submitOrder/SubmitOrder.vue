@@ -6,10 +6,10 @@
     </v-tabs>
     <v-tabs-items v-model="tab">
       <v-tab-item  transition="false" reverse-transition="false">
-        <SendMsa />
+        <SendMsa v-if="tab === 0"/>
       </v-tab-item>
       <v-tab-item transition="false" reverse-transition="false">
-        <CreateNewService />
+        <CreateNewService v-if="tab === 1"/>
       </v-tab-item>
     </v-tabs-items>
 
