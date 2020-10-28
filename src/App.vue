@@ -1,6 +1,6 @@
 <template>
   <v-app class="transparent">
-    <router-view class="mt-12 mx-0 px-0" />
+    <router-view />
   </v-app>
 </template>
 
