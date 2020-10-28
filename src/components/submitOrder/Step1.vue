@@ -74,10 +74,10 @@ export default {
     product: '',
     abn: '',
     contactPersonDetails: '',
-    companyName: '',
+    companyName: 'DGTek',
     companyAddress: '',
-    phone: '',
-    email: '',
+    phone: '1800359602',
+    email: 'info@dgtek.net',
     deposit: false,
     bankGuarantee: false,
     generalSequrityAgreement: false,
@@ -88,6 +88,7 @@ export default {
   },
   methods: {
     loadFields () {
+      if (!this.loadData) return
       this.product = this.loadData.product
       this.abn = this.loadData.abn
       this.contactPersonDetails = this.loadData.contactPersonDetails
@@ -118,15 +119,11 @@ export default {
     }
   },
   beforeMount () {
-    console.log('beforeMount')
+    console.log('beforeMount Step1')
     this.loadFields()
   },
-  beforeUpdate () {
-    console.log('beforeUpdate')
-    this.saveFields()
-  },
   beforeDestroy () {
-    console.log('beforeDestroy')
+    console.log('beforeDestroy Step1')
     this.saveFields()
   }
 };

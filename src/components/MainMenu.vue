@@ -12,11 +12,45 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
 export default {
-  data: () => ({}),
+  data: () => ({
+  servises: [
+    {
+      servise: 'submit order',
+      text: 'submit order'
+    },
+    {
+      servise: 'service qualification',
+      text: 'service qualification'
+    },
+    {
+      servise: 'documents',
+      text: 'documents'
+    },
+    {
+      servise: 'lorem',
+      text: 'lorem ips'
+    },
+    {
+      servise: 'lorem1',
+      text: 'lorem ips'
+    },
+    {
+      servise: 'lorem2',
+      text: 'lorem ips'
+    },
+    {
+      servise: 'lorem3',
+      text: 'lorem ips'
+    },
+    {
+      servise: 'lorem4',
+      text: 'lorem ips'
+    },
+  ]
+}),
   computed: {
-    ...mapState('main.menu', ['servises'])
+    //
   }
 }
 </script>

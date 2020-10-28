@@ -13,47 +13,15 @@ import Step1 from '../submitOrder/Step1'
 import Step2 from '../submitOrder/Step2'
 export default {
   name: 'CreateNewService',
-  // props: ['', ''],
+  props: ['loadData', 'saveData'],
   components: {
     Step1,
     Step2
   },
   data: () => ({
     currentStep: 1,
-    step1: {
-      product: '',
-      abn: '',
-      contactPersonDetails: '',
-      companyName: 'DGTek',
-      companyAddress: '',
-      phone: '1800359602',
-      email: 'info@dgtek.net',
-      deposit: false,
-      bankGuarantee: false,
-      generalSequrityAgreement: false,
-      noneRequired: false,
-    },
-    step2: {
-      // Technical details
-      fullSiteAddress: '',
-      serviceDescription: '',
-      vlan: '',
-      aEnd: '',
-      customerName: '',
-      zEnd: '',
-      // buildings
-      name: '',
-      company: '',
-      emailAdress: '',
-      position: '',
-      contactNumber: '',
-      //  End customers
-      companyName: '',
-      position2: '',
-      emailAdress2: '',
-      siteContactName: '',
-      contactNumber2: '',
-    }
+    step1: null,
+    step2: null
   }),
   computed: {
     //
@@ -71,23 +39,49 @@ export default {
       this.step1.bankGuarantee = data.bankGuarantee
       this.step1.generalSequrityAgreement = data.generalSequrityAgreement
       this.step1.noneRequired = data.noneRequired
+    },
+    saveDataStep2 (data) {
+      this.step1.fullSiteAddress = data.fullSiteAddress
+      this.step1.serviceDescription = data.serviceDescription
+      this.step1.contactPersonDetails = data.contactPersonDetails
+      this.step1.vlan = data.vlan
+      this.step1.aEnd = data.aEnd
+      this.step1.customerName = data.customerName
+      this.step1.zEnd = data.zEnd
+
+      this.step1.name = data.name
+      this.step1.company = data.company
+      this.step1.position = data.position
+      this.step1.contactNumber = data.contactNumber
+
+      this.step1.companyName = data.companyName
+      this.step1.position2 = data.position2
+      this.step1.emailAdress2 = data.emailAdress2
+      this.step1.siteContactName = data.siteContactName
+      this.step1.contactNumber2 = data.contactNumber2
+    },
+    loadFields () {
+      if (!this.loadData) return
+      this.currentStep = this.loadData.currentStep
+      this.step1 = this.loadData.step1
+      this.step2 = this.loadData.step2
+    },
+    saveFields () {
+      const data = {
+        currentStep: this.currentStep,
+        step1: this.step1,
+        step2: this.step2,
+        }
+      this.saveData(data)
     }
-    // saveFields () {
-    //   const data = {
-    //     product: this.product,
-    //     abn: this.abn,
-    //     contactPersonDetails: this.contactPersonDetails,
-    //     companyName: this.companyName,
-    //     companyAddress: this.companyAddress,
-    //     phone: this.phone,
-    //     email: this.email,
-    //     deposit: this.deposit,
-    //     bankGuarantee: this.bankGuarantee,
-    //     generalSequrityAgreement: this.generalSequrityAgreement,
-    //     noneRequired: this.noneRequired,
-    //   }
-    //   this.saveData(data)
-    // }
+  },
+  beforeMount () {
+    console.log('beforeMount CreateNewService')
+    this.loadFields()
+  },
+  beforeDestroy () {
+    console.log('beforeDestroy CreateNewService')
+    this.saveFields()
   }
 }
 </script>
