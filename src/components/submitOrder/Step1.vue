@@ -68,7 +68,7 @@
 export default {
   name: 'Step1',
 
-  props: ['', ''],
+  // props: ['', ''],
 
   data: () => ({
     product: '',

@@ -8,7 +8,7 @@
 export default {
   name: 'SendMsa',
 
-  props: ['', ''],
+  // props: ['', ''],
 
   data: () => ({
     //

@@ -9,8 +9,8 @@
 import Step1 from '../submitOrder/Step1'
 import Step2 from '../submitOrder/Step2'
 export default {
-  name: 'Step1',
-  props: ['', ''],
+  name: 'CreateNewService',
+  // props: ['', ''],
   components: {
     Step1,
     Step2
