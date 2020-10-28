@@ -1,7 +1,17 @@
 <template>
   <div>
-    <SendMsa/>
-    <CreateNewService/>
+    <v-tabs v-model="tab">
+      <v-tab>Edit/send MSA</v-tab>
+      <v-tab>Create new service order form</v-tab>
+    </v-tabs>
+    <v-tabs-items v-model="tab">
+      <v-tab-item  transition="false">
+        <SendMsa />
+      </v-tab-item>
+      <v-tab-item>
+        <CreateNewService />
+      </v-tab-item>
+    </v-tabs-items>
   </div>
 </template>
 
@@ -13,11 +23,15 @@ export default {
   name: 'submit-order',
   components: {
     SendMsa,
-    CreateNewService
+    CreateNewService,
+  },
+  data () {
+    return {
+       tab: null,
+    }
   }
-}
+};
 </script>
 
 <style>
-
 </style>

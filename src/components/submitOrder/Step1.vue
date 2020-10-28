@@ -22,7 +22,7 @@
           label="Company name"  
         />
         <v-text-field 
-          v-model="vgsdfg"
+          v-model="companyAddress"
           label="Company address" 
         />
       </div>
