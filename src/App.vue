@@ -1,15 +1,21 @@
 <template>
   <v-app class="transparent">
-<div class="d-flex justify-space-between ">
-  <MainMenu />
-  <SubmitOrder
-    v-if="true" 
-    :loadData.sync="submitOrderData"
-    :saveData="saveDataSubmitOrder"
-  />
+<v-container>
+  <v-row>
+    <v-col cols="4">
+      <MainMenu />
+    </v-col> 
+    <v-col cols="8">
+    <SubmitOrder
+      v-if="true" 
+      :loadData.sync="submitOrderData"
+      :saveData="saveDataSubmitOrder"
+    /> 
+    </v-col>
   <!-- <ServiceQualification />
   <Documents /> -->
-</div>
+  </v-row>
+</v-container>
   </v-app>
 </template>
 

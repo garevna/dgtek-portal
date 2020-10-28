@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div class="pb-16">
     <StepLine :currentStep="currentStep" :steps="steps" />
     <Step1 v-if="currentStep === 1" :loadData.sync="step1" :saveData="saveDataStep1" />
     <Step2 v-if="currentStep === 2" :loadData.sync="step2" :saveData="saveDataStep2" />
     <Step3 v-if="currentStep === 3" />
-    <div class="d-flex justify-space-between">
-      <v-btn v-if="currentStep > 1" @click="back">BACK</v-btn>
-      <v-btn @click="forward">SAVE & CONTINUE</v-btn>
+    <div class="btn-container mt-4">
+      <v-btn v-if="currentStep > 1" class="btn-back" @click="back">BACK</v-btn>
+      <v-btn @click="forward" class="btn-next">SAVE & CONTINUE</v-btn>
     </div>
   </div>
 </template>
@@ -102,5 +102,17 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.btn-container {
+  position: relative;
+}
+.btn-back{
+  position: absolute;
+  left: 0;
+  top:0;
+}
+.btn-next{
+  position: absolute;
+  right: 0;
+}
 </style>
