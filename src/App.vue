@@ -1,6 +1,6 @@
 <template>
   <v-app class="transparent">
-<div class="d-flex justify-space-between">
+<div class="d-flex justify-space-between ">
   <MainMenu />
   <SubmitOrder
     v-if="true" 

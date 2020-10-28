@@ -1,7 +1,6 @@
-<template>
+<template >
   <v-card flat max-width="185px">
     <v-btn
-      dark
       depressed 
       color="primary" 
       width="100%" 

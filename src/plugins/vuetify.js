@@ -23,9 +23,10 @@ export default new Vuetify({
         lighttext: '#CCCCCC',
         linecolor: '#C1C1C1',
         white: '#FFF',
+        
       },
       dark: {
-        primary: '#FFC44A',
+        primary: '#58120E',
         secondary: '#dde',
         darkGrey: '#333333',
         buttons: '#FFC44A',
@@ -34,7 +35,7 @@ export default new Vuetify({
         substrate: '#F4F4F4',
         lightFont: '#808080',
         coursesGray: '#4D4D4D',
-      },
-    },
-  },
-});
+      }
+    }
+  }
+})
