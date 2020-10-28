@@ -1,31 +1,36 @@
 const state = {
-  buttons: [
+  servises: [
     {
-      item: 'submit order',
+      servise: 'submit order',
       text: 'submit order'
     },
     {
-      item: 'service qualification',
+      servise: 'service qualification',
       text: 'service qualification'
     },
     {
-      item: 'documents',
+      servise: 'documents',
       text: 'documents'
     },
     {
-      item: 'lorem'
+      servise: 'lorem',
+      text: 'lorem ips'
     },
     {
-      item: 'lorem1'
+      servise: 'lorem1',
+      text: 'lorem ips'
     },
     {
-      item: 'lorem2'
+      servise: 'lorem2',
+      text: 'lorem ips'
     },
     {
-      item: 'lorem3'
+      servise: 'lorem3',
+      text: 'lorem ips'
     },
     {
-      item: 'lorem4'
+      servise: 'lorem4',
+      text: 'lorem ips'
     },
   ]
 }

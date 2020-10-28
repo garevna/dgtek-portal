@@ -6,9 +6,9 @@
           depressed 
           color="primary" 
           width="100%" 
-          v-for="button in buttons" :key="button.item"
+          v-for="servise in servises" :key="servise.servise"
         >
-        {{ button.text }}
+        {{ servise.text }}
         </v-btn>
       </v-card> 
     </v-col>
@@ -20,7 +20,7 @@ import { mapState } from 'vuex'
 export default {
   data: () => ({}),
   computed: {
-    ...mapState('main.menu', ['buttons'])
+    ...mapState('main.menu', ['servises'])
   }
 }
 </script>
