@@ -5,7 +5,7 @@
   <SubmitOrder
     v-if="true" 
     :loadData.sync="submitOrderData"
-    :saveData="saveDataNewService"
+    :saveData="saveDataSubmitOrder"
   />
   <!-- <ServiceQualification />
   <Documents /> -->
@@ -33,6 +33,7 @@ import SubmitOrder from '@/components/submitOrder/SubmitOrder'
     }),
     methods: {
       saveDataSubmitOrder (data) {
+      if (!this.submitOrderData) this.submitOrderData = {}
         this.submitOrderData = data.submitOrderData
       },
     }
