@@ -1,7 +1,10 @@
-$body-font-family: 'Bebas Neue';
-$heading-font-family: $body-font-family !default;
-$activeStepLine:  #881F1A ;
-$defaultStepLine:  #C1C1C1;
+@import "fonts";
+$body-font-family: 'Gilroy';
+$heading-font-family: 'Gilroy';
+$primary:#881F1A;
+$secondary:#E82F37;
+$active: #881F1A;
+$menu: #58120E;
 $headings: (
   'h1': (
     'size': 46px,
@@ -22,5 +25,9 @@ $headings: (
   'h5': (
     'size': 18px,
     'line-height': 100%
+  ),
+  'p': (
+    'size': 16px,
+    'line-height': 100%
   )
-);
+)

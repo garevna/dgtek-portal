@@ -1,4 +1,5 @@
 @import 'variables';
+@import "fonts";
 html, body {
   width: 100%;
   max-width: 100%;
@@ -25,18 +26,21 @@ h1, h2, h3, h4, h5, p {
 }
 h1 {
   font-size: 46px;
-  font-weight: 900;
   color: #fff;
+  font-family: 'Gilroy';
+  font-weight: 600;
 }
 h2 {
-  font-size: 32px;
+  font-size: 26px;
   font-weight: 900;
-  text-align: center;
+  text-align: left;
   color: #363636;
   width: 100%;
+  font-family: 'Gilroy';
+  font-weight: 600;
 }
 h3 {
-  font-size: 28px;
+  font-size: 22px;
 }
 h4 {
   font-size: 24px;
@@ -48,18 +52,127 @@ p {
   font-size: 16px;
   font-weight: normal;
 }
-
-.row {
-  margin-left: 0!important;
-  margin-right: 0!important;
+span,label,input {
+  font-family: 'Gilroy';
 }
+a {
+  text-decoration: none;
+  color: #757575;
+  display: inline-block;
+  margin-right: 10px;
+}
+
+@media (min-width: 1900px) {
+  .card-wrapp{
+    max-width: 50%!important;
+  }
+}
+
+// ===================================================== BUTTONS =======================================================================
+
+// .v-btn .button-type-one {
+//   padding: 15px;
+//   width: 200px;
+//   outline: none !important;
+//   border: 1px solid var(--base-red-color-2);
+//   border-radius: 5px;
+//   background: var(--base-white-color);
+//   color: var(--base-red-color-2);
+//   transition: 0.2s all;
+//   &:hover {
+//     background: var(--base-red-color-2);
+//     color: var(--base-white-color);
+//     transition: 0.2s all;
+//   }
+//   &:active {
+//     background: var(--base-red-color-1);
+//     border-color: var(--base-red-color-1);
+//     color: var(--base-white-color);
+//     transition: 0.2s all;
+//   }
+// }
+
+/* Button red bgc */
 
 .v-btn {
-  border-radius: 0!important;
-  font-family: 'Bebas Neue';
-  font-weight: 200!important;
+  font-size: 14px;
+  border-radius: 0;
+  font-family: 'Gilroy';
 }
 
-.v-application--wrap {
-  background-color: #424242;
+.v-btn__content {
+  font-size: 14px;
+  font-weight: 200;
+  line-height: 14px;
+}
+
+
+// .v-application--wrap {
+//   background-color: #424242;
+// }
+.v-text-field .v-label {
+  font-size: 14px;
+  font-family: 'Gilroy';
+  font-weight: 700;
+  text-decoration-color: #000;
+}
+table {
+  border-spacing:0;
+}
+td{
+  font-family: 'Gilroy';
+  padding: 15px !important;
+  color: #fff;
+}
+
+.v-text-field input {
+  padding-left: 5px;
+}
+// .v-tab.v-tab {
+//   font-family: 'bebas_neueregular';
+//   font-size: 16px;
+//   font-weight: 700;
+// }
+
+.v-sheet.v-card {
+  border-radius: 0;
+}
+
+
+// ======================================================== STEPPER ======================================================================
+
+.v-stepper__header{
+  background-color: #F3F3F3;
+}
+
+.v-stepper--alt-labels .v-stepper__step {
+  flex-basis: 55px;
+}
+
+.v-stepper__step__step .v-icon.v-icon {
+  font-size: 10px;
+}
+
+.v-stepper__step {
+  padding: 24px 0;
+}
+
+.v-stepper__step__step {
+  height: 14px;
+  min-width: 14px;
+  width: 14px;
+}
+
+.theme--light.v-stepper .v-stepper__step:not(.v-stepper__step--active):not(.v-stepper__step--complete):not(.v-stepper__step--error) .v-stepper__step__step {
+    background: unset;
+    // border: 1px solid $defaultStepLine;
+}
+.v-stepper--alt-labels .v-stepper__header .v-divider {
+    margin: 31px -21px;
+}
+.complete {
+  // background-color: $activeStepLine;
+}
+.v-stepper, .v-stepper__header {
+  box-shadow: unset;
 }

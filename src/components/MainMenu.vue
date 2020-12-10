@@ -1,56 +1,69 @@
 <template >
-  <v-card flat max-width="185px">
+  <v-card flat class="menu-wrapp d-flex flex-column">
     <v-btn
-      depressed 
-      color="primary" 
-      width="100%" 
-      v-for="servise in servises" :key="servise.servise"
+      class="main-menu"
+      depressed
+      :class="{ active: activeBtn === index }"
+      v-for="(service, index) in services"
+      :key="service.service"
+      @click="
+        open(index);
+        activeBtn = index;
+      "
     >
-    {{ servise.text }}
+      {{ service.text }}
     </v-btn>
-  </v-card> 
+  </v-card>
 </template>
+
+<style lang="scss">
+@import "@/sass/_variables.scss";
+.menu-wrapp {
+  & .main-menu {
+    background-color: $menu !important;
+    color:#fff !important;
+  }
+  & .active {
+    background-color: $active !important;
+    border-left: 3px solid #fff;
+  }
+  & .v-btn__content {
+    justify-content: start !important;
+  }
+}
+
+</style>
 
 <script>
 export default {
+  props: ['submitOrderPopup'],
   data: () => ({
-  servises: [
-    {
-      servise: 'submit order',
-      text: 'submit order'
-    },
-    {
-      servise: 'service qualification',
-      text: 'service qualification'
-    },
-    {
-      servise: 'documents',
-      text: 'documents'
-    },
-    {
-      servise: 'lorem',
-      text: 'lorem ips'
-    },
-    {
-      servise: 'lorem1',
-      text: 'lorem ips'
-    },
-    {
-      servise: 'lorem2',
-      text: 'lorem ips'
-    },
-    {
-      servise: 'lorem3',
-      text: 'lorem ips'
-    },
-    {
-      servise: 'lorem4',
-      text: 'lorem ips'
-    },
-  ]
-}),
+    activeBtn: 0,
+    services: [
+      {
+        service: 'submit order',
+        text: 'submit order',
+        popup: 'submitOrderPopup'
+      },
+      {
+        service: 'service qualification',
+        text: 'service qualification',
+        popup: 'service-qualification'
+      },
+      {
+        service: 'documents',
+        text: 'documents',
+        popup: 'service-qualification'
+      }
+    ]
+  }),
   computed: {
-    //
+  },
+  methods: {
+    open (index) {
+      // this[this.services[index].popup] = true
+      this.$emit(`update:${this.services[index].popup}`, true)
+    }
   }
 }
 </script>

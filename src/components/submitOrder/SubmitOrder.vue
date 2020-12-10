@@ -1,75 +1,97 @@
 <template>
-  <div>
+  <v-card max-width="900">
+    <!-- <div class="close-icon-wrapper" @click="poupClose">
+      <i class="close"></i>
+    </div> -->
+
     <v-tabs v-model="tab">
-      <v-tab>Edit/send MSA</v-tab>
+      <v-tab disabled>Edit/send MSA</v-tab>
       <v-tab>Create new service order form</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
+      <!-- <v-btn icon @click="poupClose" class="close-icon-wrapper">
+        <v-icon large>mdi-close</v-icon>
+      </v-btn> -->
       <v-tab-item transition="false" reverse-transition="false">
-        <SendMsa v-if="tab === 0" />
+        <SendMsa />
       </v-tab-item>
       <v-tab-item transition="false" reverse-transition="false">
         <CreateNewService
-          v-if="tab === 1"
-          :loadData.sync="createNewServiceData"
-          :saveData="saveDataNewService"
+          :data.sync="createNewServiceData"
         />
       </v-tab-item>
     </v-tabs-items>
-  </div>
+  </v-card>
 </template>
 
 <style lang="scss">
-.v-slide-group__content {
-  padding-left: 50px;
+.close-icon-wrapper {
+  position: absolute;
+  top: -25px;
+  right: -50px;
+  z-index: 500;
+}
+
+.close {
+  top: 10px;
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  transform: rotate(45deg);
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 20px;
+    height: 2px;
+    background-color: #000;
+    transform: rotate(90deg);
+  }
 }
 </style>
 
 <script>
-import SendMsa from './SendMsa';
-import CreateNewService from './CreateNewService';
+/* eslint-disable no-unused-vars */
+import SendMsa from './SendMsa'
+import CreateNewService from './CreateNewService'
 
 export default {
   name: 'SubmitOrder',
-  props: ['loadData', 'saveData'],
+  props: ['data', 'close'],
   components: {
     SendMsa,
-    CreateNewService,
+    CreateNewService
   },
-  data() {
+  data () {
     return {
       tab: 1,
-      createNewServiceData: null,
-    };
+      createNewServiceData: null
+    }
   },
   methods: {
-    saveDataNewService(data) {
-      if (!this.createNewServiceData) this.createNewServiceData = {};
-      this.createNewServiceData = data;
+    loadFields () {
+      if (!this.data) return
+      this.tab = this.data.tab
+      this.createNewServiceData = this.data.createNewServiceData
     },
-    loadFields() {
-      if (!this.loadData) return;
-      this.tab = this.loadData.tab;
-      this.createNewServiceData = this.loadData.createNewServiceData;
-    },
-    saveFields() {
+    saveFields () {
       const data = {
         tab: this.tab,
-        createNewServiceData: this.createNewServiceData,
-      };
-      this.saveData(data);
+        createNewServiceData: this.createNewServiceData
+      }
+      this.$emit('update:data', data)
     },
+    poupClose () {
+      this.$emit('update:close', false)
+    }
   },
-  beforeMount() {
-    console.log('beforeMount SubmitOrder');
+  beforeMount () {
     // this.loadFields()
   },
-  beforeDestroy() {
-    console.log('beforeDestroy submit-order');
+  destroyed () {
     // this.saveFields()
-  },
-};
+  }
+}
 </script>
-
-<style>
-</style>

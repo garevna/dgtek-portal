@@ -15,8 +15,8 @@ export default {
   }),
   computed: {
     //
-  },
-};
+  }
+}
 </script>
 
 <style>

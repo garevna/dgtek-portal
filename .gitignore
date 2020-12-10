@@ -1,11 +1,14 @@
 .DS_Store
 node_modules
 /dist
+/note
 
 
 # local env files
 .env.local
 .env.*.local
+note.md
+package-lock.json
 
 # Log files
 npm-debug.log*

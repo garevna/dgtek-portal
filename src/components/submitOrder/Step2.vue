@@ -1,70 +1,115 @@
 <template>
-  <form ref="form">
+  <v-form ref="step2">
     <h2>Technical details and Contact details</h2>
     <v-row>
       <v-col cols="12" xs="12" md="6">
         <v-text-field
           v-model="fullSiteAddress"
           label="Full Site Address"
+          :rules="[rules.required]"
         />
         <v-text-field
           v-model="serviceDescription"
           label="Service Description (from MSA)"
+          :rules="[rules.required]"
         />
-        <v-text-field v-model="vlan" label="VLAN" />
-        <v-text-field v-model="aEnd" label="A End:" />
+        <v-text-field v-model="vlan" :rules="[rules.required]" label="VLAN" />
+        <v-text-field v-model="aEnd" :rules="[rules.required]" label="A End:" />
       </v-col>
       <v-col cols="12" xs="12" md="6">
-        <v-text-field v-model="customerName" label="Custumer Name" />
-        <v-text-field v-model="term" label="Term:" />
-        <v-text-field v-model="zEnd" label="Z End:" />
+        <v-text-field
+          v-model="customerName"
+          :rules="[rules.required]"
+          label="Custumer Name"
+        />
+        <v-text-field v-model="term" :rules="[rules.required]" label="Term:" />
+        <v-text-field v-model="zEnd" :rules="[rules.required]" label="Z End:" />
       </v-col>
     </v-row>
     <h2>
-      *Building / Facilities Manager or Property Manager or Strata or
-      Owner
+      *Building / Facilities Manager or Property Manager or Strata or Owner
     </h2>
     <v-row>
       <v-col cols="12" xs="12" md="6">
-        <v-text-field v-model="name" label="Name" />
-        <v-text-field v-model="company" label="Company" />
-        <v-text-field v-model="emailAdress" label="Email Address" />
+        <v-text-field v-model="name" :rules="[rules.required]" label="Name" />
+        <v-text-field
+          v-model="company"
+          :rules="[rules.required]"
+          label="Company"
+        />
+        <v-text-field
+          v-model="buildingsEmailAddress"
+          :rules="[rules.required, rules.emailRule1]"
+          label="Email Address"
+        />
       </v-col>
       <v-col cols="12" xs="12" md="6">
-        <v-text-field v-model="position" label="Position" />
-        <v-text-field v-model="contactNumber" label="Contact Number" />
+        <v-text-field
+          v-model="buildingsPosition"
+          :rules="[rules.required]"
+          label="Position"
+        />
+        <v-text-field
+          v-model="contactNumber"
+          :rules="[rules.required, rules.phoneRule1]"
+          label="Contact Number"
+        />
       </v-col>
     </v-row>
     <h2>End Customer & On-Site Contact Details</h2>
     <v-row>
       <v-col cols="12" xs="12" md="6">
-        <v-text-field v-model="companyName" label="Company Name" />
-        <v-text-field v-model="position2" label="Position" />
-        <v-text-field v-model="emailAdress2" label="Email Address" />
+        <v-text-field
+          v-model="endCustomersCompanyName"
+          :rules="[rules.required]"
+          label="Company Name"
+        />
+        <v-text-field
+          v-model="customersPosition"
+          :rules="[rules.required]"
+          label="Position"
+        />
+        <v-text-field
+          v-model="customersEmailAdress"
+          :rules="[rules.required, rules.emailRule1]"
+          label="Email Address"
+        />
       </v-col>
       <v-col cols="12" xs="12" md="6">
         <v-text-field
           v-model="siteContactName"
+          :rules="[rules.required]"
           label="Site Contact Name"
         />
-        <v-text-field v-model="contactNumber2" label="Contact Number" />
+        <v-text-field
+          v-model="customersContactNumber"
+          :rules="[rules.required, rules.phoneRule1]"
+          label="Contact Number"
+        />
+      </v-col>
+      <v-col cols="12" xs="12">
+        <v-card flat class="d-flex transparent">
+          <v-btn outlined color="primary" class="btn btn-back" @click="back">
+            BACK
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" @click="validate" class="btn"
+            >SAVE & CONTINUE</v-btn
+          >
+        </v-card>
       </v-col>
     </v-row>
-  </form>
+  </v-form>
 </template>
 
 <style lang="sass">
 </style>
 
 <script>
-export default {};
-</script>
-
-<script>
 export default {
   name: 'Step2',
 
-  props: ['loadData', 'saveData'],
+  props: ['data', 'valid', 'back', 'forward'],
 
   data: () => ({
     // Technical details
@@ -78,74 +123,108 @@ export default {
     // buildings
     name: '',
     company: '',
-    emailAdress: '',
-    position: '',
+    buildingsEmailAddress: '',
+    buildingsPosition: '',
     contactNumber: '',
     //  End customers
-    companyName: '',
-    position2: '',
-    emailAdress2: '',
+    endCustomersCompanyName: '',
+    customersPosition: '',
+    customersEmailAdress: '',
     siteContactName: '',
-    contactNumber2: '',
+    customersContactNumber: '',
+    rules: {
+      required: value => !!value || 'Required',
+      abnRule1: value => {
+        const pattern = /^[0-9]{11}$/gm
+        return pattern.test(value.split(' ').join('')) || 'Invalid ABN number'
+      },
+      abnRule2: value => {
+        const weight = [10, 1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
+        const array = value
+          .split(' ')
+          .join('')
+          .split('')
+        array.unshift(array.shift() - 1)
+        const result = array.reduce((accum, item, index) => {
+          return accum + item * weight[index]
+        }, 0)
+        const abnError = result % 89 !== 0
+        return !abnError || 'Invalid ABN number'
+      },
+      phoneRule1: value => {
+        const pattern = /^[0-9]{10,12}$/gm
+        const phoneError = !pattern.test(value.split(' ').join(''))
+        return !phoneError || 'Invalid phone number'
+      },
+      emailRule1: value => {
+        const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const emailError = !pattern.test(value)
+        return !emailError || 'Invalid e-mail'
+      }
+    }
   }),
   computed: {
-    //
   },
+  watch: {},
   methods: {
-    loadFields() {
-      if (!this.loadData) return;
-      this.fullSiteAddress = this.loadData.fullSiteAddress;
-      this.serviceDescription = this.loadData.serviceDescription;
-      this.vlan = this.loadData.vlan;
-      this.aEnd = this.loadData.aEnd;
-      this.customerName = this.loadData.customerName;
-      this.zEnd = this.loadData.zEnd;
-
-      this.name = this.loadData.name;
-      this.company = this.loadData.company;
-      this.emailAdress = this.loadData.emailAdress;
-      this.position = this.loadData.position;
-      this.contactNumber = this.loadData.contactNumber;
-
-      this.companyName = this.loadData.companyName;
-      this.position2 = this.loadData.position2;
-      this.emailAdress2 = this.loadData.emailAdress2;
-      this.siteContactName = this.loadData.siteContactName;
-      this.contactNumber2 = this.loadData.contactNumber2;
+    validate () {
+      if (this.$refs.step2.validate()) this.forward()
+      // this.forward()
     },
-    saveFields() {
+    loadFields () {
+      if (!this.data) return
+      this.fullSiteAddress = this.data.fullSiteAddress
+      this.serviceDescription = this.data.serviceDescription
+      this.vlan = this.data.vlan
+      this.aEnd = this.data.aEnd
+      this.customerName = this.data.customerName
+      this.term = this.data.term
+      this.zEnd = this.data.zEnd
+
+      this.name = this.data.name
+      this.company = this.data.company
+      this.buildingsEmailAddress = this.data.buildingsEmailAddress
+      this.buildingsPosition = this.data.buildingsPosition
+      this.contactNumber = this.data.contactNumber
+
+      this.endCustomersCompanyName = this.data.endCustomersCompanyName
+      this.customersPosition = this.data.customersPosition
+      this.customersEmailAdress = this.data.customersEmailAdress
+      this.siteContactName = this.data.siteContactName
+      this.customersContactNumber = this.data.customersContactNumber
+    },
+    saveFields () {
       const data = {
         fullSiteAddress: this.fullSiteAddress,
         serviceDescription: this.serviceDescription,
         vlan: this.vlan,
         aEnd: this.aEnd,
         customerName: this.customerName,
+        term: this.term,
         zEnd: this.zEnd,
 
         name: this.name,
         company: this.company,
-        emailAdress: this.emailAdress,
-        position: this.position,
+        buildingsEmailAddress: this.buildingsEmailAddress,
+        buildingsPosition: this.buildingsPosition,
         contactNumber: this.contactNumber,
 
-        companyName: this.companyName,
-        position2: this.position2,
-        emailAdress2: this.emailAdress2,
+        endCustomersCompanyName: this.endCustomersCompanyName,
+        customersPosition: this.customersPosition,
+        customersEmailAdress: this.customersEmailAdress,
         siteContactName: this.siteContactName,
-        contactNumber2: this.contactNumber2,
-      };
-      this.saveData(data);
-    },
+        customersContactNumber: this.customersContactNumber
+      }
+      this.$emit('update:data', data)
+    }
   },
-  beforeMount() {
-    console.log('beforeMount Step2');
-    this.loadFields();
+  mounted () {
+    this.loadFields()
   },
-  beforeDestroy() {
-    console.log('beforeDestroy Step2');
-    this.saveFields();
-  },
-};
+  beforeDestroy () {
+    this.saveFields()
+  }
+}
 </script>
 
 <style>
