@@ -8,9 +8,9 @@
   >
     <v-container>
       <v-card flat class="transparent d-flex card-wrapp">
-        <router-link to="/">
+        <!-- <router-link to="/">
           <img src="../assets/dgtek-logo.svg" alt="dgtek-logo" height="48" />
-        </router-link>
+        </router-link> -->
         <v-spacer />
         <v-card
           flat

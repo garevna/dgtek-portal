@@ -1,4 +1,3 @@
-# dg-form
 
 ## Project setup
 ```
