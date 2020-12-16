@@ -18,8 +18,7 @@ const getters = {
   authorizationEndpoint: (state, getters, rootState) => `${rootState.host}/auth/signin`,
   authorizationEndpoint2: (state, getters, rootState) => `${rootState.host}/cabinet/door`,
   registrationEndpoint: (state, getters, rootState) => `${rootState.host}/auth/signup`,
-  registrationEndpoint2: (state, getters, rootState) => `${rootState.host}/ticket/registration`,
-  registrationRequestEndpoint: (state, getters, rootState) => `${rootState.host}/registaration_request`
+  registrationEndpoint2: (state, getters, rootState) => `${rootState.host}/ticket/registration`
 }
 
 const mutations = {

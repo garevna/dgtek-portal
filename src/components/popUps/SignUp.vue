@@ -4,40 +4,53 @@
       <v-card flat style="height: 500px; overflow-y: auto; padding: 15px">
         <v-text-field
           color="success"
-          label="full name"
-          v-model="fullName"
-          :rules="[rules.required]"
-        ></v-text-field>
-        <v-text-field
-          color="success"
-          label="login"
-          v-model="login"
-          :rules="[rules.required]"
-        />
-        <v-text-field
-          color="success"
-          label="company name"
-          v-model="companyName"
-          :rules="[rules.required]"
-        />
-        <v-text-field
-          color="success"
           label="ABN"
           v-model="ABN"
           :rules="[rules.required, rules.abnRule1, rules.abnRule2]"
         />
+
         <v-text-field
           color="success"
-          label="contact phone"
+          label="Address"
+          v-model="address"
+          :rules="[rules.required]"
+        />
+
+        <v-text-field
+          color="success"
+          label="Contact phone"
           v-model="phone"
           :rules="[rules.required, rules.phoneRule1]"
         ></v-text-field>
+
         <v-text-field
           color="success"
-          label="contact email"
+          label="Email"
           v-model="email"
-          :rules="[rules.required, rules.emailRule1]"
+          :rules="[rules.required, rules.emailRule1, rules.emailRule2]"
         ></v-text-field>
+
+        <v-text-field
+          color="success"
+          label="Additional email"
+          v-model="additionalEmail"
+          :rules="[rules.required, rules.emailRule1, rules.emailRule2]"
+        ></v-text-field>
+
+        <v-text-field
+          color="success"
+          label="Site"
+          v-model="site"
+          :rules="[rules.required, rules.site1]"
+        />
+
+        <v-text-field
+          color="success"
+          label="Login"
+          v-model="login"
+          :rules="[rules.required]"
+        />
+
         <v-text-field
           :append-icon="showPass ? 'mdi-eye' : 'mdi-eye-off'"
           :type="showPass ? 'text' : 'password'"
@@ -47,13 +60,43 @@
           :rules="[rules.required, rules.minPass]"
           @click:append="showPass = !showPass"
         />
+
+        <v-text-field
+          color="success"
+          label="Company"
+          v-model="company"
+          :rules="[rules.required]"
+        />
+
+        <v-text-field
+          color="success"
+          label="Contact number"
+          v-model="contactNumber"
+          :rules="[rules.required, rules.phoneRule1]"
+        />
+
+        <v-text-field
+          color="success"
+          label="Name"
+          v-model="name"
+          :rules="[rules.required]"
+        ></v-text-field>
+
+        <!-- <v-text-field
+          color="success"
+          label="Contact personDetail"
+          v-model="contactPersonDetail"
+          :rules="[rules.required]"
+        ></v-text-field> -->
+
         <v-textarea
           color="success"
-          label="message"
+          label="Contact personDetail"
           outlined
           no-resize
           rows="8"
-          v-model="message"
+          v-model="contactPersonDetail"
+          :rules="[rules.required]"
         />
       </v-card>
     </v-form>
@@ -80,14 +123,30 @@ export default {
   },
   data () {
     return {
-      fullName: '',
-      login: '',
-      companyName: '',
+      // abn: this.ABN,
+      // address: this.address,
+      // phone: this.phone,
+      // email: this.email,
+      // additionalEmail: this.additionalEmail,
+      // site: this.site,
+      // login: this.login,
+      // password: await this.hashing(this.password),
+      // company: this.company,
+      // contactNumber: this.contactNumber,
+      // contactPersonDetail: this.contactPersonDetail,
+      // name: this.name
       ABN: '',
-      message: '',
+      address: '',
       phone: '',
       email: '',
+      additionalEmail: '',
+      site: '',
+      login: '',
       password: '',
+      company: '',
+      contactNumber: '',
+      contactPersonDetail: '',
+      name: '',
       showPass: false,
       valid: false,
       rules: {
@@ -110,6 +169,11 @@ export default {
           const abnError = result % 89 !== 0
           return !abnError || 'Invalid ABN number'
         },
+        site1: value => {
+          const pattern = /^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,6}$/
+          const siteError = !pattern.test(value)
+          return !siteError || 'Please enter your site url in format: example.com'
+        },
         phoneRule1: value => {
           const pattern = /^[0-9]{10,12}$/gm
           const phoneError = !pattern.test(value.split(' ').join(''))
@@ -118,7 +182,10 @@ export default {
         emailRule1: value => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           const emailError = !pattern.test(value)
-          return !emailError || 'Invalid e-mail'
+          return !emailError || 'Please enter your email address in format: yourname@example.com'
+        },
+        emailRule2: value => {
+          return this.email !== this.additionalEmail || 'Email address and additional email address must not match'
         }
       }
     }
@@ -138,16 +205,35 @@ export default {
       ).cipher
       return hashCipher
     },
+    // abn: "81 601 798 609"
+    // activeSesions: [] // <=
+    // additionalEmail: ""
+    // address: "58 Brighton Rd, Ripponlea VIC 3185, Australia"
+    // company: "Foton"
+    // contactNumber: "02 5550 7897"
+    // contactPersonDetails: "David"
+    // email: "foton@gmail.com"
+    // login: "robo"
+    // name: "Foton"
+    // password: "cop"
+    // phone: "18003596021"
+    // role: "RSP" // <=
+    // site: "https://www.wikipedia.org/"
+    // _id: "5fd9054c26bfff342002a062" // <=
     async signUp () {
       const data = {
-        fullName: this.fullName,
-        login: this.login,
-        companyName: this.companyName,
-        ABN: this.ABN,
+        abn: this.ABN,
+        address: this.address,
         phone: this.phone,
         email: this.email,
-        passwordHash: await this.hashing(this.password),
-        message: this.message
+        additionalEmail: this.additionalEmail,
+        site: this.site,
+        login: this.login,
+        password: await this.hashing(this.password),
+        company: this.company,
+        contactNumber: this.contactNumber,
+        contactPersonDetail: this.contactPersonDetail,
+        name: this.name
       }
       if (this.$refs['form-sign-up'].validate()) {
         this.$store.dispatch('auth/SIGN_UP', data)
