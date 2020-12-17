@@ -1,5 +1,5 @@
 <template >
-  <v-card flat class="menu-wrapp d-flex flex-column">
+  <v-card flat class="transparent menu-wrapp d-flex flex-column">
     <v-btn
       class="main-menu"
       depressed
@@ -17,7 +17,7 @@
 </template>
 
 <style lang="scss">
-@import "@/sass/_variables.scss";
+// @import "@/sass/variables.scss";
 .menu-wrapp {
   & .main-menu {
     background-color: $menu !important;

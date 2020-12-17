@@ -24,6 +24,9 @@
   justify-content: center;
   width: 200px;
 }
+.v-chip.v-size--default{
+  font-size: 16px!important;
+}
 .active-chip{
   border-radius: 0!important;
 }

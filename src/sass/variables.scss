@@ -1,33 +1,34 @@
-@import "fonts";
-$body-font-family: 'Gilroy';
-$heading-font-family: 'Gilroy';
+$body-font-family: 'Gilroy'!important;
+$heading-font-family: 'Gilroy'!important;
+$title-font: 'Gilroy'!important;
 $primary:#881F1A;
-$secondary:#E82F37;
+$secondary:#E15240;
+$font-size-root: 16px;
 $active: #881F1A;
 $menu: #58120E;
 $headings: (
   'h1': (
-    'size': 46px,
+    'font-size': 46px,
     'line-height': 150%
   ),
   'h2': (
-    'size': 32px,
+    'font-size': 32px,
     'line-height': 150%
   ),
   'h3': (
-    'size': 28px,
+    'font-size': 28px,
     'line-height': 150%
   ),
   'h4': (
-    'size': 24px,
+    'font-size': 24px,
     'line-height': 100%
   ),
   'h5': (
-    'size': 18px,
+    'font-size': 18px,
     'line-height': 100%
   ),
   'p': (
-    'size': 16px,
+    'font-size': 16px,
     'line-height': 100%
   )
 )

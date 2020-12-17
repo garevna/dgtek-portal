@@ -19,10 +19,12 @@ export default new Vuetify({
         secondary: '#E82F37',
         buttons: '#881F1A',
         buttonActive: '#882F1A',
-        homefone: '#FEFEFE',
+        homefone: '#FBFBFB',
+        accent: '#f3f3f3',
         inputs: '#EFEFEF',
         activefield: '#D9D9D9',
-        warning: '#FAFF00'
+        warning: '#FAFF00',
+        info: '#fbfbfb'
       },
       dark: {
         primary: '#FF0E00',

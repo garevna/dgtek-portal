@@ -113,7 +113,7 @@
 </template>
 
 <style lang="scss" scoped>
-  @import '@/sass/_variables';
+  // @import '@/sass/variables';
   .container {
     width: 100%;
     padding-right: 15px !important;

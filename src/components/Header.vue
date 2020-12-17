@@ -2,8 +2,6 @@
   <v-app-bar
     app
     elevate-on-scroll
-    hide-on-scroll
-    scroll-threshold="75"
     height="100"
   >
     <v-container>

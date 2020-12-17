@@ -8,7 +8,7 @@
     >
       <v-btn @click="toRouteName('SubmitOrder')">
         <span>Submit Form</span>
-        <v-icon>mdi-format-list-checkbox</v-icon>
+        <v-icon>mdi-account-details</v-icon>
       </v-btn>
       <v-btn @click="toRouteName('Services')">
         <span>Services</span>
