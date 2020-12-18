@@ -8,7 +8,7 @@
     >
       <v-btn @click="toRouteName('SubmitOrder')">
         <span>Submit Form</span>
-        <v-icon>mdi-account-details</v-icon>
+        <v-icon>mdi-text-box-outline</v-icon>
       </v-btn>
       <v-btn @click="toRouteName('Services')">
         <span>Services</span>
