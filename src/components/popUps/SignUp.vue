@@ -85,7 +85,7 @@
         <!-- <v-text-field
           color="success"
           label="Contact personDetail"
-          v-model="contactPersonDetail"
+          v-model="contactPersonDetails"
           :rules="[rules.required]"
         ></v-text-field> -->
 
@@ -95,7 +95,7 @@
           outlined
           no-resize
           rows="8"
-          v-model="contactPersonDetail"
+          v-model="contactPersonDetails"
           :rules="[rules.required]"
         />
       </v-card>
@@ -133,7 +133,7 @@ export default {
       // password: await this.hashing(this.password),
       // company: this.company,
       // contactNumber: this.contactNumber,
-      // contactPersonDetail: this.contactPersonDetail,
+      // contactPersonDetails: this.contactPersonDetails,
       // name: this.name
       ABN: '',
       address: '',
@@ -145,7 +145,7 @@ export default {
       password: '',
       company: '',
       contactNumber: '',
-      contactPersonDetail: '',
+      contactPersonDetails: '',
       name: '',
       showPass: false,
       valid: false,
@@ -211,7 +211,7 @@ export default {
     // address: "58 Brighton Rd, Ripponlea VIC 3185, Australia"
     // company: "Foton"
     // contactNumber: "02 5550 7897"
-    // contactPersonDetails: "David"
+    // contactPersonDetailss: "David"
     // email: "foton@gmail.com"
     // login: "robo"
     // name: "Foton"
@@ -220,6 +220,25 @@ export default {
     // role: "RSP" // <=
     // site: "https://www.wikipedia.org/"
     // _id: "5fd9054c26bfff342002a062" // <=
+
+    // fullName: string;
+    // login: string;
+    // password: string;
+    // address: string;
+    // abn: string;
+    // phone: string;
+    // email: string;
+    // message: string;
+    // type: string;
+    // createdAt?: string;
+    // site?: string;
+    // role?: string;
+    // name: string;
+    // contactPersonDetails: string;
+    // contactNumber: string;
+    // company: string;
+    // additionalEmail: string;
+
     async signUp () {
       const data = {
         abn: this.ABN,
@@ -232,8 +251,8 @@ export default {
         password: await this.hashing(this.password),
         company: this.company,
         contactNumber: this.contactNumber,
-        contactPersonDetail: this.contactPersonDetail,
-        name: this.name
+        contactPersonDetails: this.contactPersonDetails,
+        fullName: this.name
       }
       if (this.$refs['form-sign-up'].validate()) {
         this.$store.dispatch('auth/SIGN_UP', data)
