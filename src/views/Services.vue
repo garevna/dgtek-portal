@@ -30,14 +30,12 @@
 <script>
 import services from '@/components/services/mockData'
 import links from '@/components/services/mockLinks'
-import ServiceCard from '@/components/services/ServiceCard'
-import TypeSwich from '@/components/services/TypeSwich'
 
 export default {
   name: 'Services',
   components: {
-    ServiceCard,
-    TypeSwich
+    ServiceCard: () => import('@/components/services/ServiceCard.vue'),
+    TypeSwich: () => import('@/components/services/TypeSwich.vue')
   },
   data () {
     return {

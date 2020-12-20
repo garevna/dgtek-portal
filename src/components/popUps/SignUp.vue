@@ -140,7 +140,7 @@ export default {
       phone: '',
       email: '',
       additionalEmail: '',
-      site: '',
+      site: 'https://www.wikipedia.org/',
       login: '',
       password: '',
       company: '',

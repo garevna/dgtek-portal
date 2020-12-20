@@ -30,14 +30,12 @@ h1 {
 </style>
 
 <script>
-import MainMenu from '@/components/MainMenu.vue'
-import SubmitOrder from '@/components/submitOrder/SubmitOrder'
 // import Documents from '@/components/documents/Documents.vue'
 export default {
   name: 'Submit',
   components: {
-    MainMenu,
-    SubmitOrder
+    MainMenu: () => import('@/components/MainMenu.vue'),
+    SubmitOrder: () => import('@/components/submitOrder/SubmitOrder')
     // ServiceQualification,
     // Documents
   },

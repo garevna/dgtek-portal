@@ -8,7 +8,7 @@
     </v-main>
     <Footer />
     <PopUpSign v-if="showPopUpSign" :show.sync="showPopUpSign" />
-    <Message v-if="this.$route.name !== 'NotFound'" />
+    <!-- <Message v-if="this.$route.name !== 'NotFound'" /> -->
     <v-snackbar v-model="snackbar" :timeout="timeout" :color="color" top>
       {{ text }}
       <template v-slot:action="{ attrs }">
@@ -58,11 +58,7 @@
 
 <script>
 import { mapState } from 'vuex'
-
-import Header from '@/components/Header'
-import PopUpSign from '@/components/popUps/PopUpSignForRegistr'
-import Message from '@/components/Message'
-import Footer from '@/components/Footer'
+// import Message from '@/components/Message'
 
 import 'dgtek-styles'
 
@@ -70,10 +66,10 @@ export default {
   name: 'App',
 
   components: {
-    Header,
-    PopUpSign,
-    Message,
-    Footer
+    Header: () => import('@/components/Header.vue'),
+    PopUpSign: () => import('@/components/popUps/PopUpSignForRegistr.vue'),
+    // Message,
+    Footer: () => import('@/components/Footer.vue')
   },
 
   data: () => ({

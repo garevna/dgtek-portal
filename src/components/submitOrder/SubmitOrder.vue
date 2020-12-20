@@ -54,15 +54,13 @@
 
 <script>
 /* eslint-disable no-unused-vars */
-import SendMsa from './SendMsa'
-import CreateNewService from './CreateNewService'
 
 export default {
   name: 'SubmitOrder',
   props: ['data', 'close'],
   components: {
-    SendMsa,
-    CreateNewService
+    SendMsa: () => import('./SendMsa.vue'),
+    CreateNewService: () => import('./CreateNewService.vue')
   },
   data () {
     return {
