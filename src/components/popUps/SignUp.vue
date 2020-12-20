@@ -18,7 +18,7 @@
 
         <v-text-field
           color="success"
-          label="Contact phone"
+          label="Phone"
           v-model="phone"
           :rules="[rules.required, rules.phoneRule1]"
         ></v-text-field>
@@ -34,7 +34,7 @@
           color="success"
           label="Additional email"
           v-model="additionalEmail"
-          :rules="[rules.required, rules.emailRule1, rules.emailRule2]"
+          :rules="[rules.emailRule1, rules.emailRule2]"
         ></v-text-field>
 
         <v-text-field
