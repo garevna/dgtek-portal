@@ -41,7 +41,7 @@
           color="success"
           label="Site"
           v-model="site"
-          :rules="[rules.required, rules.site1]"
+          :rules="[rules.required, rules.site2]"
         />
 
         <v-text-field
@@ -174,6 +174,11 @@ export default {
           const siteError = !pattern.test(value)
           return !siteError || 'Please enter your site url in format: example.com'
         },
+        site2: value => {
+          const pattern = /[-a-zA-Z0-9@:%_+.~#?&/=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_+.~#?&/=]*)?/gi
+          const siteError = !pattern.test(value)
+          return !siteError || 'Please enter your site url in format: example.com'
+        },
         phoneRule1: value => {
           const pattern = /^[0-9]{10,12}$/gm
           const phoneError = !pattern.test(value.split(' ').join(''))
@@ -182,10 +187,10 @@ export default {
         emailRule1: value => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
           const emailError = !pattern.test(value)
-          return !emailError || 'Please enter your email address in format: yourname@example.com'
+          return !value || !emailError || 'Please enter your email address in format: yourname@example.com'
         },
         emailRule2: value => {
-          return this.email !== this.additionalEmail || 'Email address and additional email address must not match'
+          return this.email !== this.additionalEmail || !this.email || 'Email address and additional email address must not match'
         }
       }
     }
