@@ -1,10 +1,10 @@
 <template>
   <v-card flat class="wrap">
-    <v-card flat class="pr-10 pl-10 wrap">
+    <v-card flat class=" wrap">
       <StepLine :currentStep="currentStep" :steps="steps" />
-      <Step1 v-if="currentStep === 1" :data.sync="step1" :back="back" :forward="forward"/>
-      <Step2 v-if="currentStep === 2" :data.sync="step2" :back="back"  :forward="forward"/>
-      <Step3 v-if="currentStep === 3" :back="back" :sendData="sendData"/>
+      <Step1 v-if="currentStep === 1" :data.sync="step1" :back="back" :forward="forward" class="pr-10 pl-10" />
+      <Step2 v-if="currentStep === 2" :data.sync="step2" :back="back"  :forward="forward" class="pr-10 pl-10" />
+      <Step3 v-if="currentStep === 3" :back="back" :sendData="sendData" class="pr-10 pl-10" />
     </v-card>
     <!-- <v-card flat class="px-10 py-4 btn-container">
       <v-card flat class="empty-btn" v-if="currentStep === 1" />
