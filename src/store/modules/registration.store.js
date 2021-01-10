@@ -36,7 +36,6 @@ const actions = {
       )).json()
       if (response?.error) {
         commit('ERROR', response.error)
-        console.error(response.error)
       }
     } catch (e) {
       console.error(e.message)

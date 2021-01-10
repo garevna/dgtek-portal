@@ -1,19 +1,36 @@
 <template>
   <v-app class="transparent">
-    <Header :signCallback="signCallback" />
-    <v-main class="">
+    <v-app-bar app height="48">
+      <v-toolbar-title>{{ headers[$route.name] }}</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn
+        text
+        v-if="$route.name !== 'home'"
+        @click="$router.push({ name: 'home' })"
+      >
+        <v-icon color="primary">mdi-home</v-icon>
+      </v-btn>
+      <v-btn
+        text
+        @click="signIn = true"
+        v-if="$route.name === 'home'"
+      >
+        <v-icon color="primary">mdi-login</v-icon>
+      </v-btn>
+    </v-app-bar>
+    <v-main class="mt-12">
       <v-container fluid class="main-content">
         <router-view></router-view>
       </v-container>
+
     </v-main>
-    <Footer />
-    <PopUpSign v-if="showPopUpSign" :show.sync="showPopUpSign" />
-    <!-- <Message v-if="this.$route.name !== 'NotFound'" /> -->
+    <SignInDialog v-if="signIn" :dialog.sync="signIn" />
+
     <v-snackbar v-model="snackbar" :timeout="timeout" :color="color" top>
       {{ text }}
       <template v-slot:action="{ attrs }">
         <v-btn
-          color="blue"
+          color="#fff"
           class="close-icon-snackbar"
           icon
           v-bind="attrs"
@@ -26,39 +43,10 @@
   </v-app>
 </template>
 
-<style lang="scss">
-@import '@/sass/main.scss';
-.main-content {
-  padding-top: 50px !important;
-}
-.vue-notification {
-  background-color: #65a368 !important;
-  padding: 5px;
-  margin: 10px 0 0 0;
-  font-size: 16px;
-  border-left: none;
-  text-align: center;
-  // border-radius: 5px;
-  font-family: 'Gilroy' !important;
-  font-weight: 700;
-  &.error {
-    background: #e82f37;
-  }
-}
-.v-dialog .v-slide-group__content {
-  padding-left: 0 !important;
-}
-.v-dialog {
-  overflow-y: unset !important;
-}
-.v-slide-group__content {
-  padding-left: 50px;
-}
-</style>
-
 <script>
+
+import '@/sass/main.scss'
 import { mapState } from 'vuex'
-// import Message from '@/components/Message'
 
 import 'dgtek-styles'
 
@@ -66,58 +54,54 @@ export default {
   name: 'App',
 
   components: {
-    Header: () => import('@/components/Header.vue'),
-    PopUpSign: () => import('@/components/popUps/PopUpSignForRegistr.vue'),
-    // Message,
-    Footer: () => import('@/components/Footer.vue')
+    SignInDialog: () => import('@/components/popUps/SignInDialog.vue')
   },
 
   data: () => ({
-    showPopUpSign: false,
+    headers: {
+      home: 'Service Order',
+      services: 'Services',
+      documents: 'Documents'
+    },
+    signIn: false,
     snackbar: false,
-    text: '',
-    timeout: 8000,
-    color: 'green'
+    timeout: 8000
   }),
   computed: {
     ...mapState('auth', ['authError', 'authMessage']),
     ...mapState('message', ['error', 'sending']),
-    ...mapState('registration', ['registeredError', 'registeredSending'])
+    ...mapState('registration', ['registeredError', 'registeredSending']),
+    color () {
+      return this.authError || this.registeredError || this.error ? '#900' : '#09b'
+    },
+    text () {
+      return this.error || this.registeredError ? 'Error' : 'Success'
+    }
   },
   watch: {
     authError (val) {
       if (!val) return
       this.text = val
-      this.color = 'red'
       this.snackbar = true
     },
     sending (val) {
       if (val) return
-      if (this.error) {
-        this.text = 'Error sending message.'
-        this.color = 'red'
-        this.snackbar = true
-      } else {
-        this.text = 'Message sent successfully!'
-        this.color = 'green'
-        this.snackbar = true
-      }
+      this.snackbar = true
     },
     authMessage (val) {
       if (!val) return
       this.text = val
-      this.color = 'green'
       this.snackbar = true
     },
     registeredSending (val) {
       if (val) return
       if (this.registeredError) {
         this.text = this.registeredError
-        this.color = 'red'
+        this.color = '$primary'
         this.snackbar = true
       } else {
         this.text = 'Registration data sent successfully!'
-        this.color = 'green'
+        this.color = '$info'
         this.snackbar = true
       }
     }

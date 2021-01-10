@@ -4,20 +4,17 @@
       class="main-menu"
       depressed
       :class="{ active: activeBtn === index }"
-      v-for="(service, index) in services"
-      :key="service.service"
-      @click="
-        open(index);
-        activeBtn = index;
-      "
+      v-for="(option, index) in options"
+      :key="option.service"
+      @click="$router.push({ name: option.goto })"
     >
-      {{ service.text }}
+      {{ option.text }}
     </v-btn>
   </v-card>
 </template>
 
 <style lang="scss">
-// @import "@/sass/variables.scss";
+
 .menu-wrapp {
   & .main-menu {
     background-color: $menu !important;
@@ -39,21 +36,21 @@ export default {
   props: ['submitOrderPopup'],
   data: () => ({
     activeBtn: 0,
-    services: [
+    options: [
       {
         service: 'submit order',
-        text: 'submit order',
-        popup: 'submitOrderPopup'
+        text: 'Submit Order',
+        goto: 'submit'
       },
       {
         service: 'service qualification',
-        text: 'service qualification',
-        popup: 'service-qualification'
+        text: 'Service Qualification',
+        goto: 'services'
       },
       {
         service: 'documents',
-        text: 'documents',
-        popup: 'service-qualification'
+        text: 'Documents',
+        goto: 'documents'
       }
     ]
   }),

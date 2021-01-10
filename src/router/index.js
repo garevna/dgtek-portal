@@ -7,18 +7,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'SubmitOrder',
+    name: 'home',
     component: Submit
   },
   {
     path: '/services',
-    name: 'Services',
-    component: () => import('@/views/Services.vue')
+    name: 'services',
+    component: () => import(/* webpackChunkName: "services" */'@/views/Services.vue')
   },
   {
-    path: '/services/:serviceSlug',
-    name: 'Service',
-    component: () => import(/* webpackChunkName: "service" */ '@/views/Service.vue')
+    path: '/documents',
+    name: 'documents',
+    component: () => import(/* webpackChunkName: "documents" */ '@/views/Documents.vue')
   },
   {
     path: '*',
