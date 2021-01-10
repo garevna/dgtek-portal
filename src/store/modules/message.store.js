@@ -23,17 +23,15 @@ const actions = {
     let response = null
     try {
       commit('SEND', true)
-      response = await (await fetch(
-        getters.common,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Authorization: process.env.VUE_APP_AUTHORIZATION_KEY
-          },
-          body: JSON.stringify(payload)
-        }
-      )).json()
+      response = await (await fetch(getters.common, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: process.env.VUE_APP_AUTHORIZATION_KEY
+        },
+        body: JSON.stringify(payload)
+      })).json()
+
       if (response?.error) {
         commit('ERROR', response.error)
         console.error(response.error)

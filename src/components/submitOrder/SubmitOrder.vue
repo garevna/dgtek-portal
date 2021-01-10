@@ -1,17 +1,10 @@
 <template>
   <v-card max-width="900">
-    <!-- <div class="close-icon-wrapper" @click="poupClose">
-      <i class="close"></i>
-    </div> -->
-
     <v-tabs v-model="tab">
       <v-tab disabled>Edit/send MSA</v-tab>
       <v-tab>Create new service order form</v-tab>
     </v-tabs>
     <v-tabs-items v-model="tab">
-      <!-- <v-btn icon @click="poupClose" class="close-icon-wrapper">
-        <v-icon large>mdi-close</v-icon>
-      </v-btn> -->
       <v-tab-item transition="false" reverse-transition="false">
         <SendMsa />
       </v-tab-item>

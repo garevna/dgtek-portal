@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
+const postData = require('@/helpers/postData').default
+
+console.log(postData)
 
 const state = {
   registeredError: null,
   registeredSending: false
-}
-
-const getters = {
-  registration: (state, getters, rootState) => `${rootState.host}/???`
 }
 
 const mutations = {
@@ -19,28 +17,26 @@ const mutations = {
 }
 
 const actions = {
-  async SEND ({ getters, commit, dispatch }, payload) {
-    let response = null
-    try {
-      commit('SEND', true)
-      response = await (await fetch(
-        getters.registration,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json;charset=utf-8',
-            Authorization: process.env.VUE_APP_AUTHORIZATION_KEY
-          },
-          body: JSON.stringify(payload)
-        }
-      )).json()
-      if (response?.error) {
-        commit('ERROR', response.error)
-      }
-    } catch (e) {
-      console.error(e.message)
-    } finally {
-      commit('SEND', false)
+  async SEND (context, payload) {
+    const response = await postData('agreement', payload)
+    // let response = null
+    // try {
+    //   commit('SEND', true)
+    //   response = await (await fetch(`${process.env.VUE_APP_API_URL}/agreement`, {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json;charset=utf-8',
+    //       Authorization: process.env.VUE_APP_AUTHORIZATION_KEY
+    //     },
+    //     body: JSON.stringify(payload)
+    //   })).json()
+
+    console.log(response)
+    context.commit('SEND', false)
+
+    if (response?.error) {
+      context.commit('ERROR', response.error)
+      return false
     }
   }
 }
@@ -48,7 +44,6 @@ const actions = {
 export default {
   namespaced: true,
   state,
-  getters,
   actions,
   mutations
 }
