@@ -2,8 +2,8 @@
 node_modules
 /dist
 /note
-/worker/node_modules
-/worker/dist
+*/node_modules
+*/dist
 
 
 # local env files
