@@ -6,7 +6,7 @@
     "worker-prod": "yarn add crypto-js && webpack --config ./worker/webpack.config.worker.js --mode production && yarn remove crypto-js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "NODE_OPTIONS=--max-old-space-size=8192 vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
