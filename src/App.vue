@@ -1,30 +1,28 @@
 <template>
   <v-app class="transparent">
-    <v-app-bar app height="48">
-      <v-toolbar-title>{{ headers[$route.name] }}</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn
-        text
-        v-if="$route.name !== 'home'"
-        @click="$router.push({ name: 'home' })"
-      >
-        <v-icon color="primary">mdi-home</v-icon>
-      </v-btn>
-      <v-btn
-        text
-        @click="signIn = true"
-        v-if="$route.name === 'home'"
-      >
-        <v-icon color="primary">mdi-login</v-icon>
+    <v-app-bar app flat height="80" class="homefone">
+      <v-card flat class="transparent text-left mt-4 ml-0" height="50">
+        <v-img :src="require('@/assets/dgtek-logo.svg')" width="70" class="mr-8" />
+      </v-card>
+      <h3 class="main-header mt-5">DGtek provisioning portal</h3>
+      <v-spacer />
+      <v-btn text v-if="$route.name !== 'home'" @click="$router.push({ name: 'home' })">
+        <v-icon large color="primary">mdi-home</v-icon>
       </v-btn>
     </v-app-bar>
-    <v-main class="mt-12">
-      <v-container fluid class="main-content">
-        <router-view></router-view>
-      </v-container>
 
+    <v-progress-linear
+      :active="progress"
+      :indeterminate="progress"
+      color="primary"
+      style="z-index: 5"
+    ></v-progress-linear>
+
+    <v-main class="main-content mt-8 mb-12">
+      <transition name="page-fade-transition" mode="out-in">
+        <router-view></router-view>
+      </transition>
     </v-main>
-    <SignInDialog v-if="signIn" :dialog.sync="signIn" />
 
     <v-snackbar v-model="snackbar" :timeout="timeout" :color="color" top>
       {{ text }}
@@ -40,24 +38,33 @@
         </v-btn>
       </template>
     </v-snackbar>
+    <error-message />
+    <simple-message />
+    <v-row justify="center" style="position: fixed; bottom: 0; z-index: 100; width: 100%; height: 32px; background: #aaa;">
+      <p class="text-center" style="color: #efefef;">
+        <small>
+          <sub>2021 &copy; Dgtek Pty. Ltd ABN 61 600 896 115</sub>
+        </small>
+      </p>
+    </v-row>
   </v-app>
 </template>
 
 <script>
 
-import '@/sass/main.scss'
-import { mapState } from 'vuex'
-
 import 'dgtek-styles'
+
+// import '@/sass/main.scss'
+
+const homeImage = require('@/assets/images/melbourne-2-1.svg')
+const servicesImage = require('@/assets/images/Webb-Bridge-Melbourne-Drawing-effect.svg')
 
 export default {
   name: 'App',
 
-  components: {
-    SignInDialog: () => import('@/components/popUps/SignInDialog.vue')
-  },
-
   data: () => ({
+    isActive: false,
+    progress: false,
     headers: {
       home: 'Service Order',
       services: 'Services',
@@ -68,51 +75,58 @@ export default {
     timeout: 8000
   }),
   computed: {
-    ...mapState('auth', ['authError', 'authMessage']),
-    ...mapState('message', ['error', 'sending']),
-    ...mapState('registration', ['registeredError', 'registeredSending']),
     color () {
       return this.authError || this.registeredError || this.error ? '#900' : '#09b'
     },
     text () {
       return this.error || this.registeredError ? 'Error' : 'Success'
-    }
-  },
-  watch: {
-    authError (val) {
-      if (!val) return
-      this.text = val
-      this.snackbar = true
     },
-    sending (val) {
-      if (val) return
-      this.snackbar = true
-    },
-    authMessage (val) {
-      if (!val) return
-      this.text = val
-      this.snackbar = true
-    },
-    registeredSending (val) {
-      if (val) return
-      if (this.registeredError) {
-        this.text = this.registeredError
-        this.color = '$primary'
-        this.snackbar = true
-      } else {
-        this.text = 'Registration data sent successfully!'
-        this.color = '$info'
-        this.snackbar = true
-      }
+    backgroundImage () {
+      return this.$route.name === 'home' ? homeImage : servicesImage
     }
   },
   methods: {
-    signCallback () {
-      this.showPopUpSign = true
+    errorHandler (event) {
+      const { errorType, errorMessage } = event.data
+      this.$root.$emit('open-error-popup', { errorType, errorMessage })
+    },
+    messageHandler (event) {
+      const { messageType, messageText } = event.data
+      this.$root.$emit('open-message-popup', { messageType, messageText })
     }
   },
-  created () {},
-  mounted () {},
-  beforeDestroy () {}
+  mounted () {
+    this.$root.$on('progress-event', function (event) {
+      this.progress = event.progress
+    }.bind(this))
+
+    this.__worker.addEventListener('message', function (event) {
+      if (event.data.status === '300') return
+      event.data.error && this.errorHandler(event)
+      event.data.message && this.messageHandler(event)
+    }.bind(this))
+  }
 }
 </script>
+
+<style>
+
+* {
+  user-select: none;
+  outline: none;
+}
+
+.main-header{
+  font-weight: 900;
+}
+
+.v-application {
+  font-family: 'Gilroy' !important;
+}
+
+@media screen and (max-width: 420px) {
+  .main-header {
+    font-size: 16px;
+  }
+}
+</style>

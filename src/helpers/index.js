@@ -1,13 +1,20 @@
-const getData = require('./getData').default
-const postData = require('./postData').default
-const putData = require('./putData').default
-const patchData = require('./patchData').default
-const deleteData = require('./deleteData').default
+// import { loadGoogleMapsScript } from './loadGoogleMapsScript'
+import { validateAddress } from './validateAddress'
+import { getRegistrationResult } from './getRegistrationResult'
 
-export default {
-  getData,
-  postData,
-  putData,
-  patchData,
-  deleteData
+import { readFile } from './readFile'
+import { validateABN } from './validateABN'
+import { loginHandler } from './loginHandler'
+import { codeHandler } from './codeHandler'
+import { passwordHandler } from './passwordHandler'
+
+export {
+  // loadGoogleMapsScript,
+  validateAddress,
+  readFile,
+  validateABN,
+  loginHandler,
+  codeHandler,
+  passwordHandler,
+  getRegistrationResult
 }

@@ -1,17 +1,11 @@
 <template>
-    <v-container>
-      <h2 class="text-center">Page not found</h2>
-      <router-link to="/">to Home Page</router-link>
-  <v-bottom-navigation
-      :value="value"
-      color="buttons"
-      grow
-      app
-    >
-      <v-btn @click="toRouteName('SubmitOrder')">
-        <span>to Home Page</span>
-      </v-btn>
-    </v-bottom-navigation>
+    <v-container fluid>
+      <v-row align="center" justify="center" style="height: 90vh">
+        <v-card-text text-center>
+          <h2 class="text-center ma-auto">Page not found</h2>
+        </v-card-text>
+        <router-link to="/">to Home Page</router-link>
+      </v-row>
     </v-container>
 
 </template>

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Submit from '@/views/Submit.vue'
+import Home from '@/views/Home.vue'
 
 Vue.use(VueRouter)
 
@@ -8,18 +8,28 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: Submit
+    component: Home
   },
   {
-    path: '/services',
-    name: 'services',
-    component: () => import(/* webpackChunkName: "services" */'@/views/Services.vue')
+    path: '/register',
+    name: 'register',
+    component: () => import(/* webpackChunkName: "registration" */'@/views/Registration.vue')
   },
-  {
-    path: '/documents',
-    name: 'documents',
-    component: () => import(/* webpackChunkName: "documents" */ '@/views/Documents.vue')
-  },
+  // {
+  //   path: '/service-order',
+  //   name: 'service-order',
+  //   component: () => import(/* webpackChunkName: "service-order" */'@/views/Submit.vue')
+  // },
+  // {
+  //   path: '/services',
+  //   name: 'services',
+  //   component: () => import(/* webpackChunkName: "services" */'@/views/Services.vue')
+  // },
+  // {
+  //   path: '/documents',
+  //   name: 'documents',
+  //   component: () => import(/* webpackChunkName: "documents" */ '@/views/Documents.vue')
+  // },
   {
     path: '*',
     name: 'NotFound',
