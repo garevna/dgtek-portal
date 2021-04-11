@@ -6,7 +6,7 @@
     "worker-prod": "yarn add crypto-js && webpack --stats verbose --config webpack.config.worker.js --mode production && yarn remove crypto-js"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.12.1"
+    "core-js": "^3.10.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.13.12",

@@ -1,6 +1,6 @@
 import Vue from 'vue'
+
 // import { loadGoogleMapsScript } from './helpers/loadGoogleMapsScript'
-//
 // loadGoogleMapsScript()
 
 const readyCallback = function (event) {
@@ -13,8 +13,6 @@ const path = location.href.indexOf('dgtek-portal') > 0 ? 'dgtek-portal/' : ''
 Vue.prototype.__worker = new Worker(`/${path}portal.worker.js`)
 
 Vue.prototype.__worker.addEventListener('message', readyCallback)
-
-console.log(process.env.VUE_APP_HOST)
 
 Vue.prototype.__worker.postMessage({
   action: 'init',

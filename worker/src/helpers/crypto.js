@@ -13,11 +13,9 @@ const encrypt = (data) => {
   const action = 'encrypt'
   if (!data) return { status: 422, action, result: emptyData }
 
-  const secret = secretHandler()
+  if (!secretHandler()) return { status: 500, action, result: secretError }
 
-  if (!secret) return { status: 500, action, result: secretError }
-
-  const result = /* crypto. */ AES.encrypt(data, secret).toString()
+  const result = /* crypto. */ AES.encrypt(data, secretHandler()).toString()
 
   return result ? { status: 200, action, result } : { status: 500, action, result: encryptError }
 }
@@ -26,11 +24,9 @@ const decrypt = (ciphertext) => {
   const action = 'decrypt'
   if (!ciphertext) return { status: 422, action, result: emptyData }
 
-  const secret = secretHandler()
+  if (!secretHandler()) return { status: 500, action, result: secretError }
 
-  if (!secret) return { status: 500, action, result: secretError }
-
-  const bytes = /* crypto. */ AES.decrypt(ciphertext, secret)
+  const bytes = /* crypto. */ AES.decrypt(ciphertext, secretHandler())
   // const text = bytes.toString(crypto.enc.Utf8)
   const text = bytes.toString(encUtf8)
 

@@ -10,6 +10,7 @@ export const auth = async (login, password) => {
   if (hashStatus !== 200) return authError(500)
 
   const { status, result } = encrypt(JSON.stringify({ login, password: hashResult }))
+
   if (status !== 200) return authError(status)
 
   const response = await fetch(`${hostHandler()}/auth`, {
