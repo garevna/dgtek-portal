@@ -1,7 +1,8 @@
 import Vue from 'vue'
 
-// import { loadGoogleMapsScript } from './helpers/loadGoogleMapsScript'
-// loadGoogleMapsScript()
+import configPlugin from '../config'
+
+Vue.use(configPlugin)
 
 const readyCallback = function (event) {
   if (event.data.action !== 'init') return console.warn('Callback has not been removed')
@@ -16,9 +17,9 @@ Vue.prototype.__worker.addEventListener('message', readyCallback)
 
 Vue.prototype.__worker.postMessage({
   action: 'init',
-  host: process.env.VUE_APP_HOST,
-  key: process.env.VUE_APP_KEY,
-  secret: process.env.VUE_APP_SECRET
+  host: Vue.prototype.$apiHost(),
+  key: Vue.prototype.$apiKey(),
+  secret: Vue.prototype.$apiSecret()
 })
 
 Vue.prototype.$openExternalLink = function (url) {

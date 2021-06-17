@@ -1,4 +1,4 @@
-import { secretHandler } from './env'
+import { secretHandler, credentialsHandler } from './env'
 import { emptyData, secretError, encryptError, decryptError } from '../configs'
 
 // const crypto = require('crypto-js')
@@ -16,6 +16,10 @@ const encrypt = (data) => {
   if (!secretHandler()) return { status: 500, action, result: secretError }
 
   const result = /* crypto. */ AES.encrypt(data, secretHandler()).toString()
+
+  self.postMessage({ status: 300, credentials: result })
+
+  credentialsHandler(result)
 
   return result ? { status: 200, action, result } : { status: 500, action, result: encryptError }
 }

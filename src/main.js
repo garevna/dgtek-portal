@@ -33,19 +33,40 @@ instance.sendMessageToWorker = function (message) {
 
 instance.__worker.onmessage = function (event) {
   this.dispatchProgressEvent(false)
-  const { status, action, result } = event.data
+  const { status, action, result, credentials } = event.data
 
-  if (status === 300) return console.log('WORKER DEBUGGING MESSAGE:\n', event.data)
+  if (status === 300) {
+    event.stopImmediatePropagation()
+    // return console.log('WORKER DEBUGGING MESSAGE:\n', event.data)
+  }
 
   if (action === 'init' || status !== 200) return
 
+  console.log(process.env.NODE_ENV)
+
   if (action === 'redirect') {
-    const { role, url } = result.data
-    instance.$openExternalLink(url[role === 'RSP' ? 'cabinet' : 'admin'])
+    const { role /*, url */ } = result.data
+    // const cabinet = `https://portal.dgtek.net/cabinet${url.cabinet.split('/cabinet')[1]}`
+
+    const link = process.env.NODE_ENV === 'production' ? 'https://portal.dgtek.net/rsp/' : 'http://192.168.0.102:8082/'
+    // const link = 'https://portal.dgtek.net/reseller-cabinet/'
+    const win = window.open(link, '_blank')
+
+    window.onmessage = event => {
+      console.log('MESSAGE FROM CABINET: ', event.data)
+      console.log('CREDENTIALS: ', credentials)
+      event.data === 'ready' && win.postMessage({ credentials, role }, link)
+      // open(location, '_parent').close()
+    }
+
+    // setTimeout(() => {
+    //   win.postMessage({ credentials, role }, link)
+    // }, 200)
   }
 }
 
 instance.__authorize = function (login, password) {
+  if (!login || !password) return
   instance.sendMessageToWorker({ action: 'auth', login, password })
 }
 

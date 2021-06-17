@@ -15,21 +15,6 @@ const routes = [
     name: 'register',
     component: () => import(/* webpackChunkName: "registration" */'@/views/Registration.vue')
   },
-  // {
-  //   path: '/service-order',
-  //   name: 'service-order',
-  //   component: () => import(/* webpackChunkName: "service-order" */'@/views/Submit.vue')
-  // },
-  // {
-  //   path: '/services',
-  //   name: 'services',
-  //   component: () => import(/* webpackChunkName: "services" */'@/views/Services.vue')
-  // },
-  // {
-  //   path: '/documents',
-  //   name: 'documents',
-  //   component: () => import(/* webpackChunkName: "documents" */ '@/views/Documents.vue')
-  // },
   {
     path: '*',
     name: 'NotFound',

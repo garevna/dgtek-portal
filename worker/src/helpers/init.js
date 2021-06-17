@@ -1,6 +1,7 @@
 import { secretHandler, hostHandler, apiKeyHandler } from './env'
 
 export const init = (request) => {
+  self.postMessage({ status: 300, host: hostHandler() })
   const action = 'init'
   if (!request.host || !request.key || !request.secret) return { status: 422, action, result: 'Invalid request: Insufficient data' }
   secretHandler(request.secret)

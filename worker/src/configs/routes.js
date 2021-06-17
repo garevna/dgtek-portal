@@ -6,5 +6,6 @@ export const routes = {
   registrate: authController.registrate,
   reset: authController.passwordReset,
   code: authController.sendPasswordResetCode,
-  change: authController.changePassword
+  change: authController.changePassword,
+  credentials: authController.getCredentials
 }
