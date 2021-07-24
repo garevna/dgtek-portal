@@ -3,14 +3,14 @@ import { validateABN } from '../helpers'
 
 export const rules = {
   required: value => !!value || 'Required.',
-  'simple-text': value => !!value,
-  number: value => patterns.number.test(value) || 'Invalid number.',
-  phone: value => patterns.phone.test(value) || 'Invalid phone number.',
-  mobile: value => patterns.mobile.test(value) || 'Invalid mobile phone number.',
-  email: value => patterns.email.test(value) || 'Invalid e-mail.',
-  state: value => states.indexOf(value) !== -1 || 'Invalid state.',
-  postcode: value => patterns.postcode.test(value) || 'Invalid state.',
+  'simple-text': value => true,
+  number: value => value ? patterns.number.test(value) || 'Invalid number.' : true,
+  phone: value => value ? patterns.phone.test(value) || 'Invalid phone number.' : true,
+  mobile: value => value ? patterns.mobile.test(value) || 'Invalid mobile phone number.' : true,
+  email: value => value ? patterns.email.test(value) || 'Invalid e-mail.' : true,
+  state: value => value ? states.indexOf(value) !== -1 || 'Invalid state.' : true,
+  postcode: value => value ? patterns.postcode.test(value) || 'Invalid state.' : true,
   abn: value => validateABN(value) || 'Invalid ABN.',
-  url: value => patterns.url.test(value) || 'Invalid URL.',
-  password: value => patterns.password.test(value) || 'Password is not strong enough.'
+  url: value => value ? patterns.url.test(value) || 'Invalid URL.' : true,
+  password: value => value ? patterns.password.test(value) || 'Password is not strong enough.' : true
 }

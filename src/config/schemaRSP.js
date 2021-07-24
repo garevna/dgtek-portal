@@ -24,6 +24,7 @@ export const schema = {
     },
     website: {
       title: 'Website',
+      required: false,
       type: 'url',
       value: ''
     },
@@ -41,7 +42,7 @@ export const schema = {
     },
     phoneMobile: {
       title: 'Phone (mobile)',
-      required: true,
+      required: false,
       type: 'mobile',
       value: ''
     },
@@ -53,6 +54,7 @@ export const schema = {
     },
     emailAlternative: {
       title: 'Email (alternative)',
+      required: false,
       type: 'email',
       value: ''
     }
@@ -60,26 +62,31 @@ export const schema = {
   general: {
     aboutBusiness: {
       title: 'Information about the business',
+      required: false,
       type: 'textarea',
       value: ''
     },
     annualRevenue: {
       title: 'Annual revenue',
+      required: false,
       type: 'number',
       value: 0
     },
     numberOfCustomers: {
       title: 'Number of customers',
+      required: false,
       type: 'number',
       value: 0
     },
     customerAreas: {
       title: 'Areas where the most of customers are located',
+      required: false,
       type: 'textarea',
       value: ''
     },
     other: {
       title: 'Other relevant information',
+      required: false,
       type: 'textarea',
       value: ''
     }
@@ -87,35 +94,37 @@ export const schema = {
   technic: {
     info: {
       title: 'Technical information',
+      required: false,
       type: 'textarea',
       value: ''
     },
     contact: {
       title: 'Technical contact',
-      required: true,
+      required: false,
       type: 'simple-text',
       value: ''
     },
     phoneWork: {
       title: 'Phone (work)',
-      required: true,
+      required: false,
       type: 'phone',
       value: ''
     },
     phoneMobile: {
       title: 'Phone (mobile)',
-      required: true,
+      required: false,
       type: 'mobile',
       value: ''
     },
     emailPrimary: {
       title: 'Email (primary)',
-      required: true,
+      required: false,
       type: 'email',
       value: ''
     },
     emailAlternative: {
       title: 'Email (alternative)',
+      required: false,
       type: 'email',
       value: ''
     }
@@ -130,6 +139,7 @@ export const schema = {
     },
     userName: {
       title: 'User name',
+      required: false,
       type: 'simple-text',
       value: ''
     },

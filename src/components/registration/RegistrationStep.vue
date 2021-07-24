@@ -15,7 +15,7 @@
           v-if="textField(item)"
           v-model="item.value"
           :label="item.title"
-          :rules="[item.required ? rules.required : (value) => true, rule(item)]"
+          :rules="[item.required ? rules.required : value => true, rule(item)]"
           outlined
           dense
           :append-icon="appendIcon(item)"
@@ -27,7 +27,7 @@
           v-if="item.type === 'mobile'"
           v-model="item.value"
           prefix="+61"
-          :rules="[item.required ? rules.required : (value) => true, rules.mobile]"
+          :rules="[item.required ? rules.required : value => true, rules.mobile]"
           label="mobile phone number"
           outlined
           dense
@@ -73,7 +73,6 @@ import { rules, steps } from '@/config'
 export default {
   name: 'RegistrationStep',
   components: {
-    // InputWithAutocomplite: () => import('@/components/registration/InputWithAutocomplite.vue'),
     GeoscapeAutocomplete: () => import('@/components/registration/GeoscapeAutocomplete.vue')
   },
   props: {
@@ -108,13 +107,13 @@ export default {
         this.items = this.schema[val]
         this.ready = true
       }
-    },
-    item: {
-      deep: true,
-      handler (val) {
-        console.log(val.address)
-      }
     }
+    // item: {
+    //   deep: true,
+    //   handler (val) {
+    //     console.log(val.address)
+    //   }
+    // }
   },
   methods: {
     appendIcon (item) {
