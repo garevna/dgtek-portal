@@ -1,10 +1,14 @@
-import { hostHandler, apiKeyHandler } from './env'
-import { resetOffline, resetError, encryptError } from './errors'
+import { hostHandler, apiKeyHandler, loginHandler } from './env'
+import { loginError, resetOffline, resetError, encryptError } from './errors'
 
 import { encrypt } from './'
 
 export const passwordReset = async (login) => {
   const action = 'reset'
+
+  if (!login) return loginError(action)
+
+  loginHandler(login)
 
   if (!navigator.onLine) return resetOffline()
 

@@ -40,7 +40,7 @@
     </v-snackbar>
     <error-message />
     <simple-message />
-    <v-row justify="center" style="position: fixed; bottom: 0; z-index: 100; width: 100%; height: 32px; background: #aaa;">
+    <v-row justify="center" style="position: fixed; bottom: 0; z-index: 100; width: 105%; height: 32px; background: #aaa;">
       <p class="text-center" style="color: #efefef;">
         <small>
           <sub>2021 &copy; Dgtek Pty. Ltd ABN 61 600 896 115</sub>
@@ -53,8 +53,6 @@
 <script>
 
 import 'dgtek-styles'
-
-// import '@/sass/main.scss'
 
 const homeImage = require('@/assets/images/melbourne-2-1.svg')
 const servicesImage = require('@/assets/images/Webb-Bridge-Melbourne-Drawing-effect.svg')
@@ -110,7 +108,6 @@ export default {
 </script>
 
 <style>
-
 * {
   user-select: none;
   outline: none;

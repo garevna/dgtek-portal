@@ -1,8 +1,6 @@
-import { hostHandler, apiKeyHandler, credentialsHandler } from './env'
+import { hostHandler, apiKeyHandler, credentialsHandler, loginHandler } from './env'
 import { resetOffline, encryptError, resetError } from './errors'
 import { encrypt, hash } from './'
-
-const type = 'Change password'
 
 export const changePassword = async (password) => {
   if (!navigator.onLine) return resetOffline()
@@ -18,7 +16,7 @@ export const changePassword = async (password) => {
       Authentification: apiKeyHandler(),
       Credentials: credentialsHandler()
     },
-    body: JSON.stringify({ newPass: result })
+    body: JSON.stringify({ login: loginHandler(), newPass: result })
   })
 
   if (status !== 200) return resetError(response.status)
@@ -28,7 +26,7 @@ export const changePassword = async (password) => {
     action: 'change',
     result: await response.json(),
     message: true,
-    messageType: type,
+    messageType: 'Change password',
     messageText: 'Password successfuly changed'
   }
 }

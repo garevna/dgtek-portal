@@ -42,8 +42,6 @@ instance.__worker.onmessage = function (event) {
 
   if (action === 'init' || status !== 200) return
 
-  console.log(process.env.NODE_ENV)
-
   if (action === 'redirect') {
     const { role /*, url */ } = result.data
     // const cabinet = `https://portal.dgtek.net/cabinet${url.cabinet.split('/cabinet')[1]}`
@@ -53,15 +51,8 @@ instance.__worker.onmessage = function (event) {
     const win = window.open(link, '_blank')
 
     window.onmessage = event => {
-      console.log('MESSAGE FROM CABINET: ', event.data)
-      console.log('CREDENTIALS: ', credentials)
       event.data === 'ready' && win.postMessage({ credentials, role }, link)
-      // open(location, '_parent').close()
     }
-
-    // setTimeout(() => {
-    //   win.postMessage({ credentials, role }, link)
-    // }, 200)
   }
 }
 
