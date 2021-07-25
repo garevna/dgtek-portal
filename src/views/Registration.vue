@@ -138,7 +138,6 @@ export default {
     submit () {
       const { error, result } = getRegistrationResult(this.data)
 
-      console.log(error, result)
       if (error) {
         this.$root.$emit('open-error-popup', {
           errorType: 'Registration form',

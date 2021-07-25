@@ -37,7 +37,7 @@ instance.__worker.onmessage = function (event) {
 
   if (status === 300) {
     event.stopImmediatePropagation()
-    // return console.log('WORKER DEBUGGING MESSAGE:\n', event.data)
+    return console.log('WORKER DEBUGGING MESSAGE:\n', event.data)
   }
 
   if (action === 'init' || status !== 200) return
@@ -62,5 +62,5 @@ instance.__authorize = function (login, password) {
 }
 
 instance.__registrate = function (data) {
-  instance.sendMessageToWorker({ action: 'registrate', ...data })
+  instance.sendMessageToWorker({ action: 'registrate', data })
 }

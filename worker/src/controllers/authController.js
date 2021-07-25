@@ -1,5 +1,6 @@
 import {
   init,
+  registration,
   auth,
   passwordReset,
   sendPasswordResetCode,
@@ -11,6 +12,10 @@ import { credentialsHandler } from '../helpers/env'
 class AuthController {
   init (request) {
     self.postMessage(init(request))
+  }
+
+  async registrate (request) {
+    self.postMessage(await registration(request.data))
   }
 
   async auth (request) {
