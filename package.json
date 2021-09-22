@@ -1,16 +1,19 @@
 {
-  "name": "dgtek-portal",
-  "version": "2.0.0",
+  "name": "dgtek-portal-entry",
+  "version": "4.0.0",
   "scripts": {
+    "map-package": "yarn add dgtek-portal-map-package && mv node_modules/dgtek-portal-map-package/dist/map.worker.js public",
     "worker": "yarn add crypto-js && webpack --config ./worker/webpack.config.worker.js --mode development && yarn remove crypto-js",
     "worker-prod": "yarn add crypto-js && webpack --config ./worker/webpack.config.worker.js --mode production && yarn remove crypto-js",
-    "serve": "vue-cli-service serve",
+    "serve": "set PORT=8081 && vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "NODE_OPTIONS=--max-old-space-size=8192 vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "dgtek-portal-calculator": "^1.1.5",
     "dgtek-styles": "^0.0.8",
+    "global": "^4.4.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
     "vuetify": "^2.2.11"
@@ -20,7 +23,7 @@
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
-    "@vue/cli-service": "~4.5.0",
+    "@vue/cli-service": "^4.5.13",
     "@vue/eslint-config-standard": "^5.1.2",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",

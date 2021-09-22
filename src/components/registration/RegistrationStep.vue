@@ -33,11 +33,6 @@
           dense
         ></v-text-field>
 
-        <!-- <InputWithAutocomplite
-          v-if="item.type === 'address'"
-          :address.sync="item.value"
-          style="display: block;"
-        /> -->
         <GeoscapeAutocomplete
           v-if="item.type === 'address'"
           :value.sync="item.value"
@@ -108,12 +103,6 @@ export default {
         this.ready = true
       }
     }
-    // item: {
-    //   deep: true,
-    //   handler (val) {
-    //     console.log(val.address)
-    //   }
-    // }
   },
   methods: {
     appendIcon (item) {

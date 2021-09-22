@@ -137,7 +137,6 @@ export default {
       deleteService: 'DELETE_SERVICE'
     }),
     click (item) {
-      console.log(item)
       if (!item) return
       this.currentServiceId = item._id
       this.currentService = item

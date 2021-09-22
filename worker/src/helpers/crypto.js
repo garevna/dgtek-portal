@@ -17,7 +17,7 @@ const encrypt = (data) => {
 
   const result = /* crypto. */ AES.encrypt(data, secretHandler()).toString()
 
-  self.postMessage({ status: 300, credentials: result })
+  // self.postMessage({ status: 300, credentials: result })
 
   credentialsHandler(result)
 

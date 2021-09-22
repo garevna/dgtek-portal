@@ -3,11 +3,16 @@ import router from './router'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 
+import { hostHandler, apiHandler } from '@/helpers'
+
 import ErrorMessage from '@/components/popups/error.vue'
 import Message from '@/components/popups/message.vue'
 
 import 'dgtek-styles/css/fonts.scss'
 import 'dgtek-styles/css/variables.scss'
+
+import 'dgtek-portal-calculator'
+import 'dgtek-portal-calculator/dist/dgtek-portal-calculator.css'
 
 Vue.config.productionTip = false
 
@@ -33,26 +38,29 @@ instance.sendMessageToWorker = function (message) {
 
 instance.__worker.onmessage = function (event) {
   this.dispatchProgressEvent(false)
-  const { status, action, result, credentials } = event.data
+  const { status, action, result /*, credentials */ } = event.data
 
   if (status === 300) {
     event.stopImmediatePropagation()
-    return console.log('WORKER DEBUGGING MESSAGE:\n', event.data)
+    // const { status, credentials, ...data } = event.data
+    return /* console.log('WORKER DEBUGGING MESSAGE:\n', data) */
   }
 
   if (action === 'init' || status !== 200) return
 
   if (action === 'redirect') {
-    const { role /*, url */ } = result.data
-    // const cabinet = `https://portal.dgtek.net/cabinet${url.cabinet.split('/cabinet')[1]}`
+    const { role } = result.data
 
-    const link = process.env.NODE_ENV === 'production' ? 'https://portal.dgtek.net/rsp/' : 'http://192.168.0.102:8082/'
+    if (role.toLowerCase() === 'superadmin' || role.toLowerCase() === 'admin') return
+
+    hostHandler(process.env.NODE_ENV === 'production' ? 'https://portal.dgtek.net/' : 'http://192.168.0.100:8082/')
+    apiHandler(process.env.NODE_ENV === 'production' ? 'https://portal.dgtek.net' : 'http://dgtek-staging.herokuapp.com')
     // const link = 'https://portal.dgtek.net/reseller-cabinet/'
-    const win = window.open(link, '_blank')
-
-    window.onmessage = event => {
-      event.data === 'ready' && win.postMessage({ credentials, role }, link)
-    }
+    // const win = window.open(hostHandler(), '_blank')
+    //
+    // window.onmessage = event => {
+    //   event.data === 'ready' && win.postMessage({ credentials, role }, hostHandler())
+    // }
   }
 }
 

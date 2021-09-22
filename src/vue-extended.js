@@ -11,6 +11,7 @@ const readyCallback = function (event) {
 }
 
 const path = location.href.indexOf('dgtek-portal') > 0 ? 'dgtek-portal/' : ''
+
 Vue.prototype.__worker = new Worker(`/${path}portal.worker.js`)
 
 Vue.prototype.__worker.addEventListener('message', readyCallback)
@@ -24,6 +25,10 @@ Vue.prototype.__worker.postMessage({
 
 Vue.prototype.$openExternalLink = function (url) {
   window.open(url, '_blank')
+}
+
+Vue.prototype.$openInternalLink = function (url) {
+  window.open(url, '_self')
 }
 
 export default Vue

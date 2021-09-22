@@ -36,13 +36,13 @@ export const schema = {
     },
     phoneWork: {
       title: 'Phone (work)',
-      required: true,
+      required: false,
       type: 'phone',
       value: ''
     },
     phoneMobile: {
       title: 'Phone (mobile)',
-      required: false,
+      required: true,
       type: 'mobile',
       value: ''
     },

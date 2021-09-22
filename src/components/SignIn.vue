@@ -70,9 +70,13 @@ import { patterns } from '@/config'
 
 export default {
   name: 'SignIn',
+
+  props: ['role'],
+
   components: {
     ResetPassword: () => import('@/components/ResetPassword.vue')
   },
+
   data () {
     return {
       step: 1,
@@ -88,11 +92,13 @@ export default {
       }
     }
   },
+
   watch: {
     email (val) {
       loginHandler(val)
     }
   },
+
   methods: {
     async signIn () {
       this.$root.__authorize(this.email, this.password)

@@ -1,9 +1,15 @@
 <template>
-  <v-container fluid class="home-page-content mt-12">
+  <!-- <v-container fluid class="home-page-content mt-12"> -->
+  <v-container fluid class="transparent mt-12">
     <v-row align="start" justify="center" justify-md="end">
-      <SignIn :reset.sync="resetPassword" />
+      <SignIn
+        v-if="!role"
+        :reset.sync="resetPassword"
+        :role.sync="role"
+      />
     </v-row>
     <ResetPassword v-if="resetPassword" />
+
   </v-container>
 </template>
 
@@ -15,7 +21,8 @@ export default {
     SignIn: () => import('@/components/SignIn.vue')
   },
   data: () => ({
-    resetPassword: false
+    resetPassword: false,
+    role: undefined
   })
 }
 </script>

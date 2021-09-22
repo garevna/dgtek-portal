@@ -1,7 +1,14 @@
+# dgtek-portal-entry
 
 ## Project setup
 ```
 yarn install
+```
+
+### dgtek-portal-map-package installation command
+
+```
+yarn add dgtek-portal-map-package && mv node_modules/dgtek-portal-map-package/dist/map.worker.js public
 ```
 
 ### Compiles and hot-reloads for development
